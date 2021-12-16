@@ -2,12 +2,12 @@
 
 @section('content')
     <div class="container">
-        <h1 class="h6 mb-3">Se connecter</h1>
+        <h1 class="h6 mb-3">Modifier mon mot de passe</h1>
 
         @include('includes.errors')
         @include('includes.status')
 
-        <form action="/login" method="post">
+        <form action="/reset-password" method="post">
             @csrf
             <div class="mb-3">
                 <label for="email" class="form-label">Email *</label>
@@ -17,13 +17,13 @@
                 <label for="password" class="form-label">Mot de passe *</label>
                 <input type="password" class="form-control" id="password" name="password" required>
             </div>
-            <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="remember" name="remember">
-                <label class="form-check-label" for="remember">Rester connecté·x·e</label>
+            <div class="mb-3">
+                <label for="password_confirmation" class="form-label">Confirmer le mot de passe *</label>
+                <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
             </div>
-            <button type="submit" class="btn btn-primary">Se connecter</button>
 
-            <a href="{{ url('/forgot-password') }}" class="d-block mt-3">Mot de passe oublié/Modifier mon mot de passe</a>
+            <input type="hidden" name="token" value="{{ request()->route('token') }}">
+            <button type="submit" class="btn btn-primary">Se connecter</button>
         </form>
     </div>
 @endsection
