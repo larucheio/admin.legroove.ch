@@ -29,7 +29,7 @@
                             <td>{{ $user->referent }}</td>
                             <td>{{ $user->referent_phone }}</td>
                             <td>
-                                <a href="{{ route('users.edit', $user) }}">Modifier</a>
+                                <a href="{{ route('users.edit', $user) }}" class="btn btn-primary btn-sm">Modifier</a>
                             </td>
                         </tr>
                     @endforeach
