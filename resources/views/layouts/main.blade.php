@@ -10,7 +10,7 @@
         <script src="{{ mix('/js/app.js') }}"></script>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="/images/groove.png" alt="" width="50" height="50">
@@ -26,10 +26,15 @@
                             </li>
                         </ul>
                         <ul class="navbar-nav ms-auto">
+                            @can ('viewAny', App\Models\User::class)
+                                <li class="nav-item">
+                                    <a href="{{ route('users.index') }}" class="nav-link">Utilisateurices</a>
+                                </li>
+                            @endcan
                             <li class="nav-item">
                                 <form class="" action="{{ route('logout') }}" method="post">
                                     @csrf
-                                    <button type="submit" name="button" class="btn btn-link nav-link">Se déconnecter</button>
+                                    <button type="submit" name="button" class="btn btn-link nav-link border-0">Se déconnecter</button>
                                 </form>
                             </li>
                         </ul>

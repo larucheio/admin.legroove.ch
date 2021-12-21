@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'referent',
+        'referent_phone',
     ];
 
     /**
@@ -41,4 +43,39 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getRoleDisplayAttribute()
+    {
+        switch ($this->role) {
+            case 'admin':
+                return 'Admin';
+            case 'pr':
+                return 'Communication';
+            case 'team':
+                return 'Programmation/Équipe';
+        }
+    }
+
+    public function getIsAdminAttribute()
+    {
+        return $this->role === 'admin';
+    }
+
+    public function getIsPRAttribute()
+    {
+        if ($this->isAdmin) {
+            return true;
+        }
+
+        return $this->role === 'pr';
+    }
+
+    public function getIsTeamAttribute()
+    {
+        if ($this->isPR) {
+            return true;
+        }
+
+        return $this->role === 'team';
+    }
 }
