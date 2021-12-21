@@ -38,6 +38,7 @@
             </div>
 
             <button type="submit" class="btn btn-primary">Créer</button>
+            <a href="{{ route('users.index') }}" class="btn btn-link">Annuler</a>
         </form>
     </div>
 @endsection
