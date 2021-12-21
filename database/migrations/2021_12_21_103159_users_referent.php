@@ -14,8 +14,8 @@ class UsersReferent extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->text('referent');
-            $table->text('referent_phone')->nullable();
+            $table->string('referent');
+            $table->string('referent_phone')->nullable();
         });
     }
 
