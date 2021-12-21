@@ -27,8 +27,18 @@
                         </ul>
                         <ul class="navbar-nav ms-auto">
                             @can ('viewAny', App\Models\User::class)
-                                <li class="nav-item">
-                                    <a href="{{ route('users.index') }}" class="nav-link">Utilisateurices</a>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAdmin" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Administration
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
+                                        <li>
+                                            <a href="{{ route('users.index') }}" class="dropdown-item">Utilisateurices</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('spaces.index') }}" class="dropdown-item">Espaces</a>
+                                        </li>
+                                    </ul>
                                 </li>
                             @endcan
                             <li class="nav-item">

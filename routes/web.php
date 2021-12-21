@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\SpaceController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -20,5 +21,6 @@ Route::group(['middleware' => ['auth']], function () {
         return view('welcome');
     });
 
-    Route::resource('users', UserController::class);
+    Route::resource('users', UserController::class)->except(['show', 'destroy']);
+    Route::resource('spaces', SpaceController::class)->except(['show']);
 });
