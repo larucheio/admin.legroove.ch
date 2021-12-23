@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\InternalBookingController;
 use App\Http\Controllers\SpaceController;
 use App\Http\Controllers\UserController;
 
@@ -23,4 +25,6 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::resource('users', UserController::class)->except(['show', 'destroy']);
     Route::resource('spaces', SpaceController::class)->except(['show']);
+    Route::resource('bookings', BookingController::class);
+    Route::resource('internal_bookings', InternalBookingController::class);
 });

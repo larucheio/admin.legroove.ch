@@ -44,6 +44,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class);
+    }
+
+    public function internalBookings()
+    {
+        return $this->hasMany(InternalBooking::class);
+    }
+
     public function getRoleDisplayAttribute()
     {
         switch ($this->role) {

@@ -24,6 +24,14 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/') }}">Accueil</a>
                             </li>
+                            @if (Auth::user()->isTeam)
+                                <li class="nav-item">
+                                    <a href="{{ route('bookings.index') }}" class="nav-link">Réservations publique</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('internal_bookings.index') }}" class="nav-link">Réservations interne</a>
+                                </li>
+                            @endif
                         </ul>
                         <ul class="navbar-nav ms-auto">
                             @can ('viewAny', App\Models\User::class)
