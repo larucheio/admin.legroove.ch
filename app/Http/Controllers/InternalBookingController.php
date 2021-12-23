@@ -7,6 +7,8 @@ use App\Models\Space;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use Carbon\Carbon;
+
 class InternalBookingController extends Controller
 {
     /**
@@ -26,7 +28,12 @@ class InternalBookingController extends Controller
      */
     public function index()
     {
-        $internalBookings = InternalBooking::orderByDesc('date')->get();
+        $today = Carbon::today();
+
+        $internalBookings = [
+            'actual' => InternalBooking::whereDate('date', '>=', $today)->orderByDesc('date')->get(),
+            'past' => InternalBooking::whereDate('date', '<', $today)->orderBy('date')->get(),
+        ];
 
         return view('internal_bookings.index', compact('internalBookings'));
     }

@@ -6,6 +6,8 @@ use App\Models\Booking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use Carbon\Carbon;
+
 class BookingController extends Controller
 {
     /**
@@ -25,7 +27,12 @@ class BookingController extends Controller
      */
     public function index()
     {
-        $bookings = Booking::orderByDesc('date')->get();
+        $today = Carbon::today();
+
+        $bookings = [
+            'actual' => Booking::whereDate('date', '>=', $today)->orderByDesc('date')->get(),
+            'past' => Booking::whereDate('date', '<', $today)->orderBy('date')->get(),
+        ];
 
         return view('bookings.index', compact('bookings'));
     }
