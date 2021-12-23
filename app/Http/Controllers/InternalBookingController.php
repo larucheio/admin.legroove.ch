@@ -55,7 +55,7 @@ class InternalBookingController extends Controller
 
         $internalBooking = $user->internalBookings()->create($request->all());
         $internalBooking->spaces()->sync($request->spaces);
-        $internalBooking->validate_booking();
+        $internalBooking->validateBooking();
 
         return redirect()->route('internal_bookings.show', $internalBooking);
     }

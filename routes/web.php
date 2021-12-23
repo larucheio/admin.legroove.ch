@@ -23,7 +23,7 @@ Route::group(['middleware' => ['auth']], function () {
         return view('welcome');
     });
 
-    Route::resource('accounts', AccountController::class)->except(['show', 'destroy']);
+    Route::resource('accounts', AccountController::class)->except(['show']);
     Route::resource('spaces', SpaceController::class)->except(['show']);
 
     Route::get('/bookings/{booking}/validate', [BookingController::class, 'validateBooking'])->name('bookings.validate');

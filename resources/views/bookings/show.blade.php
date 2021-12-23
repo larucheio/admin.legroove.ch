@@ -5,7 +5,11 @@
         <h1 class="h6 mb-3">{{ $booking->title }} - Réservation publique</h1>
 
         <p>
-            {{ $booking->account->identifier }}
+            @if ($booking->account)
+                {{ $booking->account->identifier }}
+            @else
+                <i class="text-muted">Compte supprimé</i>
+            @endif
         </p>
 
         <p>

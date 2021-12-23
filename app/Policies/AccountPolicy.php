@@ -64,7 +64,7 @@ class AccountPolicy
      */
     public function delete(Account $account, Account $model)
     {
-        //
+        return $account->isAdmin;
     }
 
     /**

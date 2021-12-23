@@ -22,7 +22,13 @@
                 <tbody>
                     @foreach ($bookings as $booking)
                         <tr>
-                            <td>{{ $booking->account->identifier }}</td>
+                            <td>
+                                @if ($booking->account)
+                                    {{ $booking->account->identifier }}
+                                @else
+                                    <i class="text-muted">Compte supprimé</i>
+                                @endif
+                            </td>
                             <td>
                                 {{ $booking->title }}
                                 @if (!$booking->validated)

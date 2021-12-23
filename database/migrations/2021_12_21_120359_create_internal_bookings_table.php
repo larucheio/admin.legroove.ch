@@ -17,7 +17,7 @@ class CreateInternalBookingsTable extends Migration
             $table->id();
             $table->timestamps();
 
-            $table->foreignId('account_id')->constrained();
+            $table->foreignId('account_id')->nullable()->constrained()->nullOnDelete();
 
             $table->date('date');
             $table->string('title');

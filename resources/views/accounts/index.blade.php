@@ -28,6 +28,13 @@
                             <td>{{ $account->contact }}</td>
                             <td>
                                 <a href="{{ route('accounts.edit', $account) }}" class="btn btn-primary btn-sm">Modifier</a>
+
+                                <form class="d-inline-block" action="{{ route('accounts.destroy', $account) }}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach

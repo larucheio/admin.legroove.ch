@@ -51,7 +51,7 @@ class BookingController extends Controller
         $user = Auth::user();
 
         $booking = $user->bookings()->create($request->all());
-        $booking->validate_booking();
+        $booking->validateBooking();
 
         return redirect()->route('bookings.show', $booking);
     }
