@@ -22,8 +22,9 @@ class CreateInternalBookingsTable extends Migration
             $table->date('date');
             $table->string('title');
             $table->string('opening_hours')->nullable();
-
             $table->text('contact');
+
+            $table->boolean('validated')->default(false);
         });
     }
 

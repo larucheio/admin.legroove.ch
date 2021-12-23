@@ -25,6 +25,7 @@ class InternalBooking extends Model
      */
     protected $casts = [
         'date' => 'date',
+        'validated' => 'boolean',
     ];
 
     public function spaces()
