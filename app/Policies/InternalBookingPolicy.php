@@ -99,4 +99,20 @@ class InternalBookingPolicy
     {
         //
     }
+
+    /**
+     * Determine whether the account can validate the model.
+     *
+     * @param  \App\Models\Account  $account
+     * @param  \App\Models\Booking  $booking
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function validateBooking(Account $account, InternalBooking $internalBooking)
+    {
+        if ($internalBooking->validated) {
+            return false;
+        }
+
+        return $account->isAdmin;
+    }
 }

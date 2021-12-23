@@ -23,7 +23,12 @@
                     @foreach ($bookings as $booking)
                         <tr>
                             <td>{{ $booking->account->identifier }}</td>
-                            <td>{{ $booking->title }}</td>
+                            <td>
+                                {{ $booking->title }}
+                                @if (!$booking->validated)
+                                    <span class="badge bg-warning text-dark">Non validé</span>
+                                @endif
+                            </td>
                             <td>{{ $booking->date->isoFormat('LL') }}</td>
                             <td>{{ $booking->opening_hours }}</td>
                             <td>

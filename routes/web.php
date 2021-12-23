@@ -25,6 +25,10 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::resource('accounts', AccountController::class)->except(['show', 'destroy']);
     Route::resource('spaces', SpaceController::class)->except(['show']);
+
+    Route::get('/bookings/{booking}/validate', [BookingController::class, 'validateBooking'])->name('bookings.validate');
     Route::resource('bookings', BookingController::class);
+
+    Route::get('/internal_bookings/{internalBooking}/validate', [InternalBookingController::class, 'validateBooking'])->name('internal_bookings.validate');
     Route::resource('internal_bookings', InternalBookingController::class);
 });

@@ -51,6 +51,7 @@ class BookingController extends Controller
         $user = Auth::user();
 
         $booking = $user->bookings()->create($request->all());
+        $booking->validate_booking();
 
         return redirect()->route('bookings.show', $booking);
     }
@@ -102,5 +103,18 @@ class BookingController extends Controller
         $booking->delete();
 
         return redirect()->route('bookings.index');
+    }
+
+    /**
+     * Validate the specified resource in storage.
+     *
+     * @param  \App\Models\Booking  $booking
+     * @return \Illuminate\Http\Response
+     */
+    public function validateBooking(Booking $booking)
+    {
+        $booking->validateBooking();
+
+        return redirect()->route('bookings.show', $booking);
     }
 }

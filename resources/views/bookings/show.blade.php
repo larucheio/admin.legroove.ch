@@ -38,8 +38,11 @@
             {!! nl2br(e($booking->contact)) !!}
         </p>
 
-        @canany(['update', 'delete'], $booking)
+        @canany(['validateBooking', 'update', 'delete'], $booking)
             <hr>
+            @can('validateBooking', $booking)
+                <a href="{{ route('bookings.validate', $booking) }}" class="btn btn-success btn-sm">Valider</a>
+            @endcan
             @can('update', $booking)
                 <a href="{{ route('bookings.edit', $booking) }}" class="btn btn-primary btn-sm">Modifier</a>
             @endcan

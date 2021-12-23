@@ -55,6 +55,7 @@ class InternalBookingController extends Controller
 
         $internalBooking = $user->internalBookings()->create($request->all());
         $internalBooking->spaces()->sync($request->spaces);
+        $internalBooking->validate_booking();
 
         return redirect()->route('internal_bookings.show', $internalBooking);
     }
@@ -109,5 +110,18 @@ class InternalBookingController extends Controller
         $internalBooking->delete();
 
         return redirect()->route('internal_bookings.index');
+    }
+
+    /**
+     * Validate the specified resource in storage.
+     *
+     * @param  \App\Models\InternalBooking  $internalBooking
+     * @return \Illuminate\Http\Response
+     */
+    public function validateBooking(InternalBooking $internalBooking)
+    {
+        $internalBooking->validateBooking();
+
+        return redirect()->route('internal_bookings.show', $internalBooking);
     }
 }

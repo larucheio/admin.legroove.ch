@@ -99,4 +99,20 @@ class BookingPolicy
     {
         //
     }
+
+    /**
+     * Determine whether the account can validate the model.
+     *
+     * @param  \App\Models\Account  $account
+     * @param  \App\Models\Booking  $booking
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function validateBooking(Account $account, Booking $booking)
+    {
+        if ($booking->validated) {
+            return false;
+        }
+
+        return $account->isAdmin;
+    }
 }

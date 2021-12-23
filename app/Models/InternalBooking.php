@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class InternalBooking extends Model
 {
@@ -27,6 +28,14 @@ class InternalBooking extends Model
         'date' => 'date',
         'validated' => 'boolean',
     ];
+
+    public function validateBooking()
+    {
+        if (Auth::user()->can('validateBooking', $this)) {
+            $this->validated = true;
+            $this->save();
+        }
+    }
 
     public function account()
     {

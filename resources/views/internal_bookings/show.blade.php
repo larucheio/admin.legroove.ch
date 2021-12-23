@@ -29,8 +29,11 @@
             {!! nl2br(e($internalBooking->contact)) !!}
         </p>
 
-        @canany(['update', 'delete'], $internalBooking)
+        @canany(['validateBooking', 'update', 'delete'], $internalBooking)
             <hr>
+            @can('validateBooking', $internalBooking)
+                <a href="{{ route('internal_bookings.validate', $internalBooking) }}" class="btn btn-success btn-sm">Valider</a>
+            @endcan
             @can('update', $internalBooking)
                 <a href="{{ route('internal_bookings.edit', $internalBooking) }}" class="btn btn-primary btn-sm">Modifier</a>
             @endcan
