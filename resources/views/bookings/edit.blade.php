@@ -38,11 +38,6 @@
                 <input type="text" class="form-control" id="style" name="style" value="{{ $booking->style }}">
             </div>
 
-            <div class="mb-3">
-                <label for="organizer" class="form-label">Organisateurice(s) *</label>
-                <input type="text" class="form-control" id="organizer" name="organizer" required value="{{ $booking->organizer }}">
-            </div>
-
             <hr class="my-5">
             <p><b>Informations privées</b></p>
 

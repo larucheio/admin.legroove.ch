@@ -25,7 +25,6 @@ class CreateBookingsTable extends Migration
             $table->string('entry_price')->nullable();
             $table->string('opening_hours')->nullable();
             $table->string('style')->nullable();
-            $table->string('organizer');
 
             $table->string('estimated_attendance');
             $table->string('type');

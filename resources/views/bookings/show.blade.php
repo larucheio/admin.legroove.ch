@@ -12,8 +12,6 @@
             Prix d'entrée: {{ $booking->entry_price }}
             <br>
             Style: {{ $booking->style }}
-            <br>
-            Organisateurice(s): {{ $booking->organizer }}
         </p>
 
         <p>

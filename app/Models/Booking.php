@@ -18,7 +18,6 @@ class Booking extends Model
         'entry_price',
         'opening_hours',
         'style',
-        'organizer',
         'estimated_attendance',
         'type',
         'contact',
