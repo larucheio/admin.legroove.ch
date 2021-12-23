@@ -15,6 +15,7 @@
                         <th>Titre</th>
                         <th>Date</th>
                         <th>Horaires</th>
+                        <th>Espace(s)</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -24,6 +25,7 @@
                             <td>{{ $booking->title }}</td>
                             <td>{{ $booking->date->isoFormat('LL') }}</td>
                             <td>{{ $booking->opening_hours }}</td>
+                            <td>{{ $booking->spaces->implode('name', ', ') }}</td>
                             <td>
                                 <a href="{{ route('internal_bookings.show', $booking) }}" class="btn btn-primary btn-sm">Détails</a>
                             </td>

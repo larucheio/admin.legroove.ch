@@ -11,7 +11,7 @@
         </p>
 
         <p class="mb-0">
-            <b>Espaces</b>
+            <b>Espace(s)</b>
         </p>
         <ul>
             @foreach ($internalBooking->spaces as $space)

@@ -23,7 +23,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="spaces" class="form-label">Espaces * (sélection multiple)</label>
+                <label for="spaces" class="form-label">Espace(s) * (sélection multiple possible)</label>
                 <select id="spaces" name="spaces[]" class="form-select" required multiple>
                     @foreach ($spaces as $space)
                         <option value="{{ $space->id }}">{{ $space->name }}</option>
