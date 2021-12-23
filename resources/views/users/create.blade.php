@@ -8,8 +8,8 @@
             @csrf
 
             <div class="mb-3">
-                <label for="name" class="form-label">Identifiant *</label>
-                <input type="text" class="form-control" id="name" name="name" required>
+                <label for="identifier" class="form-label">Identifiant *</label>
+                <input type="text" class="form-control" id="identifier" name="identifier" required>
             </div>
 
             <div class="mb-3">
@@ -28,13 +28,8 @@
             </div>
 
             <div class="mb-3">
-                <label for="referent" class="form-label">Personne référente *</label>
-                <input type="text" class="form-control" id="referent" name="referent" required>
-            </div>
-
-            <div class="mb-3">
-                <label for="referent_phone" class="form-label">Personne référente - Téléphone</label>
-                <input type="text" class="form-control" id="referent_phone" name="referent_phone">
+                <label for="contact" class="form-label">Personne de contact *</label>
+                <textarea class="form-control" id="contact" rows="5" name="contact" required></textarea>
             </div>
 
             <button type="submit" class="btn btn-primary">Créer</button>

@@ -9,8 +9,8 @@
             @method('PATCH')
 
             <div class="mb-3">
-                <label for="name" class="form-label">Identifiant *</label>
-                <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}" required>
+                <label for="identifier" class="form-label">Identifiant *</label>
+                <input type="text" class="form-control" id="identifier" name="identifier" value="{{ $user->identifier }}" required>
             </div>
 
             <div class="mb-3">
@@ -29,13 +29,8 @@
             </div>
 
             <div class="mb-3">
-                <label for="referent" class="form-label">Personne référente *</label>
-                <input type="text" class="form-control" id="referent" name="referent" value="{{ $user->referent }}" required>
-            </div>
-
-            <div class="mb-3">
-                <label for="referent_phone" class="form-label">Personne référente - Téléphone</label>
-                <input type="text" class="form-control" id="referent_phone" name="referent_phone" value="{{ $user->referent_phone }}">
+                <label for="contact" class="form-label">Personne de contact *</label>
+                <textarea class="form-control" id="contact" rows="5" name="contact" required>{{ $user->contact }}</textarea>
             </div>
 
             <button type="submit" class="btn btn-primary">Modifier</button>
