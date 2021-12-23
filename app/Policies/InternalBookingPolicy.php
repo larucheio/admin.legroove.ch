@@ -57,6 +57,10 @@ class InternalBookingPolicy
             return true;
         }
 
+        if ($internalBooking->validated) {
+            return false;
+        }
+
         return $account->id === $internalBooking->account_id;
     }
 
