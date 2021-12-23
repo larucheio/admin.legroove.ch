@@ -53,7 +53,7 @@ class InternalBookingPolicy
      */
     public function update(Account $account, InternalBooking $internalBooking)
     {
-        if ($account->isPR) {
+        if ($account->isAdmin) {
             return true;
         }
 
@@ -69,7 +69,7 @@ class InternalBookingPolicy
      */
     public function delete(Account $account, InternalBooking $internalBooking)
     {
-        if ($account->isPR) {
+        if ($account->isAdmin) {
             return true;
         }
 
