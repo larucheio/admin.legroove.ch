@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UsersRole extends Migration
+class CreateAccountsRoles extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class UsersRole extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->enum('role', ['admin', 'pr', 'team'])->nullable();
+        Schema::table('accounts', function (Blueprint $table) {
+            $table->enum('role', ['admin', 'pr', 'team'])->nullable()->after('contact');
         });
     }
 
@@ -25,7 +25,7 @@ class UsersRole extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('accounts', function (Blueprint $table) {
             $table->dropColumn('role');
         });
     }

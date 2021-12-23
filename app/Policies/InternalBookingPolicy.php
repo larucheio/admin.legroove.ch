@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
+use App\Models\Account;
 use App\Models\InternalBooking;
-use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class InternalBookingPolicy
@@ -11,91 +11,91 @@ class InternalBookingPolicy
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can view any models.
+     * Determine whether the account can view any models.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Account  $account
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function viewAny(User $user)
+    public function viewAny(Account $account)
     {
-        return $user->isTeam;
+        return $account->isTeam;
     }
 
     /**
-     * Determine whether the user can view the model.
+     * Determine whether the account can view the model.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Account  $account
      * @param  \App\Models\InternalBooking  $internalBooking
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, InternalBooking $internalBooking)
+    public function view(Account $account, InternalBooking $internalBooking)
     {
-        return $user->isTeam;
+        return $account->isTeam;
     }
 
     /**
-     * Determine whether the user can create models.
+     * Determine whether the account can create models.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Account  $account
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function create(User $user)
+    public function create(Account $account)
     {
-        return $user->isTeam;
+        return $account->isTeam;
     }
 
     /**
-     * Determine whether the user can update the model.
+     * Determine whether the account can update the model.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Account  $account
      * @param  \App\Models\InternalBooking  $internalBooking
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, InternalBooking $internalBooking)
+    public function update(Account $account, InternalBooking $internalBooking)
     {
-        if ($user->isPR) {
+        if ($account->isPR) {
             return true;
         }
 
-        return $user->id === $internalBooking->user_id;
+        return $account->id === $internalBooking->account_id;
     }
 
     /**
-     * Determine whether the user can delete the model.
+     * Determine whether the account can delete the model.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Account  $account
      * @param  \App\Models\InternalBooking  $internalBooking
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, InternalBooking $internalBooking)
+    public function delete(Account $account, InternalBooking $internalBooking)
     {
-        if ($user->isPR) {
+        if ($account->isPR) {
             return true;
         }
 
-        return $user->id === $internalBooking->user_id;
+        return $account->id === $internalBooking->account_id;
     }
 
     /**
-     * Determine whether the user can restore the model.
+     * Determine whether the account can restore the model.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Account  $account
      * @param  \App\Models\InternalBooking  $internalBooking
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, InternalBooking $internalBooking)
+    public function restore(Account $account, InternalBooking $internalBooking)
     {
         //
     }
 
     /**
-     * Determine whether the user can permanently delete the model.
+     * Determine whether the account can permanently delete the model.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Account  $account
      * @param  \App\Models\InternalBooking  $internalBooking
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, InternalBooking $internalBooking)
+    public function forceDelete(Account $account, InternalBooking $internalBooking)
     {
         //
     }

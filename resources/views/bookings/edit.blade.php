@@ -57,7 +57,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="contact" class="form-label">Personne de contact *</label>
+                <label for="contact" class="form-label">Contact *</label>
                 <textarea class="form-control" id="contact" rows="5" name="contact" required>{{ $booking->contact }}</textarea>
             </div>
 

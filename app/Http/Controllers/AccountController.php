@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Account;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 
-class UserController extends Controller
+class AccountController extends Controller
 {
     /**
      * Create the controller instance.
@@ -16,7 +16,7 @@ class UserController extends Controller
      */
     public function __construct()
     {
-        $this->authorizeResource(User::class, 'user');
+        $this->authorizeResource(Account::class, 'account');
     }
 
     /**
@@ -26,9 +26,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('identifier')->get();
+        $accounts = Account::orderBy('identifier')->get();
 
-        return view('users.index', compact('users'));
+        return view('accounts.index', compact('accounts'));
     }
 
     /**
@@ -38,7 +38,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        return view('accounts.create');
     }
 
     /**
@@ -49,26 +49,26 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $user = User::create(array_merge(
+        $account = Account::create(array_merge(
             $request->all(),
             ['password' => Str::random(40)],
         ));
 
         if (Auth::user()->isAdmin && $request->role) {
-            $user->role = $request->role;
-            $user->save();
+            $account->role = $request->role;
+            $account->save();
         }
 
-        return redirect()->route('users.index');
+        return redirect()->route('accounts.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Account   $account
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(Account $account)
     {
         //
     }
@@ -76,40 +76,40 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Account   $account
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(Account $account)
     {
-        return view('users.edit', compact('user'));
+        return view('accounts.edit', compact('account'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Account   $account
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, Account $account)
     {
-        $user->update($request->all());
+        $account->update($request->all());
 
         if (Auth::user()->isAdmin) {
-            $user->role = $request->role;
-            $user->save();
+            $account->role = $request->role;
+            $account->save();
         }
 
-        return redirect()->route('users.index');
+        return redirect()->route('accounts.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Account   $account
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(Account $account)
     {
         //
     }

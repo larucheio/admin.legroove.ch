@@ -34,14 +34,14 @@
                             @endif
                         </ul>
                         <ul class="navbar-nav ms-auto">
-                            @can ('viewAny', App\Models\User::class)
+                            @can ('viewAny', App\Models\Account::class)
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAdmin" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         Administration
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
                                         <li>
-                                            <a href="{{ route('users.index') }}" class="dropdown-item">Utilisateurices</a>
+                                            <a href="{{ route('accounts.index') }}" class="dropdown-item">Comptes</a>
                                         </li>
                                         <li>
                                             <a href="{{ route('spaces.index') }}" class="dropdown-item">Espaces</a>

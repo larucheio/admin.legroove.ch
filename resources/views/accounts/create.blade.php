@@ -4,7 +4,7 @@
     <div class="container-fluid mt-3">
         <h1 class="h6 mb-3">Créer un compte</h1>
 
-        <form action="{{ route('users.store') }}" method="post">
+        <form action="{{ route('accounts.store') }}" method="post">
             @csrf
 
             <div class="mb-3">
@@ -28,12 +28,12 @@
             </div>
 
             <div class="mb-3">
-                <label for="contact" class="form-label">Personne de contact *</label>
+                <label for="contact" class="form-label">Contact *</label>
                 <textarea class="form-control" id="contact" rows="5" name="contact" required></textarea>
             </div>
 
             <button type="submit" class="btn btn-primary">Créer</button>
-            <a href="{{ route('users.index') }}" class="btn btn-link">Annuler</a>
+            <a href="{{ route('accounts.index') }}" class="btn btn-link">Annuler</a>
         </form>
     </div>
 @endsection

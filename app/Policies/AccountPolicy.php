@@ -3,10 +3,9 @@
 namespace App\Policies;
 
 use App\Models\Account;
-use App\Models\Booking;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class BookingPolicy
+class AccountPolicy
 {
     use HandlesAuthorization;
 
@@ -18,19 +17,19 @@ class BookingPolicy
      */
     public function viewAny(Account $account)
     {
-        return $account->isTeam;
+        return $account->isAdmin;
     }
 
     /**
      * Determine whether the account can view the model.
      *
      * @param  \App\Models\Account  $account
-     * @param  \App\Models\Booking  $booking
+     * @param  \App\Models\Account  $model
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(Account $account, Booking $booking)
+    public function view(Account $account, Account $model)
     {
-        return $account->isTeam;
+        //
     }
 
     /**
@@ -41,49 +40,41 @@ class BookingPolicy
      */
     public function create(Account $account)
     {
-        return $account->isTeam;
+        return $account->isAdmin;
     }
 
     /**
      * Determine whether the account can update the model.
      *
      * @param  \App\Models\Account  $account
-     * @param  \App\Models\Booking  $booking
+     * @param  \App\Models\Account  $model
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(Account $account, Booking $booking)
+    public function update(Account $account, Account $model)
     {
-        if ($account->isPR) {
-            return true;
-        }
-
-        return $account->id === $booking->account_id;
+        return $account->isAdmin;
     }
 
     /**
      * Determine whether the account can delete the model.
      *
      * @param  \App\Models\Account  $account
-     * @param  \App\Models\Booking  $booking
+     * @param  \App\Models\Account  $model
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(Account $account, Booking $booking)
+    public function delete(Account $account, Account $model)
     {
-        if ($account->isPR) {
-            return true;
-        }
-
-        return $account->id === $booking->account_id;
+        //
     }
 
     /**
      * Determine whether the account can restore the model.
      *
      * @param  \App\Models\Account  $account
-     * @param  \App\Models\Booking  $booking
+     * @param  \App\Models\Account  $model
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(Account $account, Booking $booking)
+    public function restore(Account $account, Account $model)
     {
         //
     }
@@ -92,10 +83,10 @@ class BookingPolicy
      * Determine whether the account can permanently delete the model.
      *
      * @param  \App\Models\Account  $account
-     * @param  \App\Models\Booking  $booking
+     * @param  \App\Models\Account  $model
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(Account $account, Booking $booking)
+    public function forceDelete(Account $account, Account $model)
     {
         //
     }

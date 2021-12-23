@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
+use App\Models\Account;
 use App\Models\Space;
-use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class SpacePolicy
@@ -11,84 +11,84 @@ class SpacePolicy
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can view any models.
+     * Determine whether the account can view any models.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Account  $account
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function viewAny(User $user)
+    public function viewAny(Account $account)
     {
-        return $user->isAdmin;
+        return $account->isAdmin;
     }
 
     /**
-     * Determine whether the user can view the model.
+     * Determine whether the account can view the model.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Account  $account
      * @param  \App\Models\Space  $space
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Space $space)
+    public function view(Account $account, Space $space)
     {
-        return $user->isAdmin;
+        return $account->isAdmin;
     }
 
     /**
-     * Determine whether the user can create models.
+     * Determine whether the account can create models.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Account  $account
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function create(User $user)
+    public function create(Account $account)
     {
-        return $user->isAdmin;
+        return $account->isAdmin;
     }
 
     /**
-     * Determine whether the user can update the model.
+     * Determine whether the account can update the model.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Account  $account
      * @param  \App\Models\Space  $space
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Space $space)
+    public function update(Account $account, Space $space)
     {
-        return $user->isAdmin;
+        return $account->isAdmin;
     }
 
     /**
-     * Determine whether the user can delete the model.
+     * Determine whether the account can delete the model.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Account  $account
      * @param  \App\Models\Space  $space
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Space $space)
+    public function delete(Account $account, Space $space)
     {
-        return $user->isAdmin;
+        return $account->isAdmin;
     }
 
     /**
-     * Determine whether the user can restore the model.
+     * Determine whether the account can restore the model.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Account  $account
      * @param  \App\Models\Space  $space
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Space $space)
+    public function restore(Account $account, Space $space)
     {
-        return $user->isAdmin;
+        return $account->isAdmin;
     }
 
     /**
-     * Determine whether the user can permanently delete the model.
+     * Determine whether the account can permanently delete the model.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Account  $account
      * @param  \App\Models\Space  $space
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Space $space)
+    public function forceDelete(Account $account, Space $space)
     {
-        return $user->isAdmin;
+        return $account->isAdmin;
     }
 }
