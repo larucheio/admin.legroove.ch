@@ -33,6 +33,12 @@
             {!! nl2br(e($internalBooking->contact)) !!}
         </p>
 
+        <p>
+            <b>Informations complémentaires</b>
+            <br>
+            {!! nl2br(e($internalBooking->complementary_informations)) !!}
+        </p>
+
         @canany(['validateBooking', 'update', 'delete'], $internalBooking)
             <hr>
             @can('validateBooking', $internalBooking)

@@ -36,6 +36,11 @@
                 <textarea class="form-control" id="contact" rows="5" name="contact" required></textarea>
             </div>
 
+            <div class="mb-3">
+                <label for="complementary_informations" class="form-label">Informations complémentaires</label>
+                <textarea class="form-control" id="complementary_informations" rows="5" name="complementary_informations"></textarea>
+            </div>
+
             <button type="submit" class="btn btn-primary">Créer</button>
             <a href="{{ route('internal_bookings.index') }}" class="btn btn-link">Annuler</a>
         </form>

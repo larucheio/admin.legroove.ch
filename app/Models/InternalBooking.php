@@ -17,6 +17,7 @@ class InternalBooking extends Model
         'title',
         'opening_hours',
         'contact',
+        'complementary_informations',
     ];
 
     /**

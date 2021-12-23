@@ -23,6 +23,7 @@ class CreateBookingsTable extends Migration
             $table->string('title');
             $table->text('description')->nullable();
             $table->string('entry_price')->nullable();
+            $table->text('links')->nullable();
             $table->string('opening_hours')->nullable();
             $table->string('style')->nullable();
 

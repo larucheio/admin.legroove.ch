@@ -19,6 +19,12 @@
             <br>
             Prix d'entrée: {{ $booking->entry_price }}
             <br>
+            Liens:
+            @if ($booking->links)
+                <br>
+                {{ $booking->links }}
+            @endif
+            <br>
             Style: {{ $booking->style }}
         </p>
 

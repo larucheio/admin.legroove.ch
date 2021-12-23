@@ -37,6 +37,11 @@
                 <textarea class="form-control" id="contact" rows="5" name="contact" required>{{ $internalBooking->contact }}</textarea>
             </div>
 
+            <div class="mb-3">
+                <label for="complementary_informations" class="form-label">Informations complémentaires</label>
+                <textarea class="form-control" id="complementary_informations" rows="5" name="complementary_informations">{{ $internalBooking->complementary_informations }}</textarea>
+            </div>
+
             <button type="submit" class="btn btn-primary">Modifier</button>
             <a href="{{ route('internal_bookings.show', $internalBooking) }}" class="btn btn-link">Annuler</a>
         </form>

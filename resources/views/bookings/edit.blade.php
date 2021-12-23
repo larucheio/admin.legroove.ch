@@ -29,6 +29,11 @@
             </div>
 
             <div class="mb-3">
+                <label for="links" class="form-label">Liens *</label>
+                <textarea class="form-control" id="links" rows="5" name="links">{{ $booking->links }}</textarea>
+            </div>
+
+            <div class="mb-3">
                 <label for="entry_price" class="form-label">Prix d'entrée</label>
                 <input type="text" class="form-control" id="entry_price" name="entry_price" value="{{ $booking->entry_price }}">
             </div>
