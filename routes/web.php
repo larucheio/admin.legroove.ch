@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InternalBookingController;
 use App\Http\Controllers\SpaceController;
 
@@ -19,9 +20,7 @@ use App\Http\Controllers\SpaceController;
 */
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/', function () {
-        return view('welcome');
-    });
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::resource('accounts', AccountController::class)->except(['show']);
     Route::resource('spaces', SpaceController::class)->except(['show']);
