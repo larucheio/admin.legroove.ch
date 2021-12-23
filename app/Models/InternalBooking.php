@@ -28,6 +28,11 @@ class InternalBooking extends Model
         'validated' => 'boolean',
     ];
 
+    public function account()
+    {
+        return $this->belongsTo(Account::class);
+    }
+
     public function spaces()
     {
         return $this->belongsToMany(Space::class);

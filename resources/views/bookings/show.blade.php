@@ -5,6 +5,10 @@
         <h1 class="h6 mb-3">{{ $booking->title }} - Réservation publique</h1>
 
         <p>
+            {{ $booking->account->identifier }}
+        </p>
+
+        <p>
             {{ $booking->date->isoFormat('LL') }}
             <br>
             Horaires: {{ $booking->opening_hours }}

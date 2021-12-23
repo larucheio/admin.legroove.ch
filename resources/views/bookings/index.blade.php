@@ -12,6 +12,7 @@
             <table class="table">
                 <thead>
                     <tr>
+                        <th>Qui?</th>
                         <th>Titre</th>
                         <th>Date</th>
                         <th>Horaires</th>
@@ -21,6 +22,7 @@
                 <tbody>
                     @foreach ($bookings as $booking)
                         <tr>
+                            <td>{{ $booking->account->identifier }}</td>
                             <td>{{ $booking->title }}</td>
                             <td>{{ $booking->date->isoFormat('LL') }}</td>
                             <td>{{ $booking->opening_hours }}</td>

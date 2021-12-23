@@ -32,4 +32,9 @@ class Booking extends Model
         'date' => 'date',
         'validated' => 'boolean',
     ];
+
+    public function account()
+    {
+        return $this->belongsTo(Account::class);
+    }
 }
