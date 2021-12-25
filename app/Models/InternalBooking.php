@@ -47,4 +47,9 @@ class InternalBooking extends Model
     {
         return $this->belongsToMany(Space::class);
     }
+
+    public function getIsPastAttribute()
+    {
+        return $this->date->isPast();
+    }
 }

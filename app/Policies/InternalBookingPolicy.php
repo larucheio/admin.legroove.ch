@@ -61,6 +61,10 @@ class InternalBookingPolicy
             return false;
         }
 
+        if ($internalBooking->isPast) {
+            return false;
+        }
+
         return $account->id === $internalBooking->account_id;
     }
 
@@ -75,6 +79,10 @@ class InternalBookingPolicy
     {
         if ($account->isAdmin) {
             return true;
+        }
+
+        if ($internalBooking->isPast) {
+            return false;
         }
 
         return $account->id === $internalBooking->account_id;

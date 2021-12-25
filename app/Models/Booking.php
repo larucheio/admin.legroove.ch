@@ -47,4 +47,9 @@ class Booking extends Model
     {
         return $this->belongsTo(Account::class);
     }
+
+    public function getIsPastAttribute()
+    {
+        return $this->date->isPast();
+    }
 }

@@ -57,6 +57,10 @@ class BookingPolicy
             return true;
         }
 
+        if ($booking->isPast) {
+            return false;
+        }
+
         return $account->id === $booking->account_id;
     }
 
@@ -71,6 +75,10 @@ class BookingPolicy
     {
         if ($account->isPR) {
             return true;
+        }
+
+        if ($booking->isPast) {
+            return false;
         }
 
         return $account->id === $booking->account_id;
