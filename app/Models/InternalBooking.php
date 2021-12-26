@@ -4,6 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
+use Carbon\Carbon;
+use Carbon\CarbonPeriod;
 
 class InternalBooking extends Model
 {
@@ -29,6 +33,35 @@ class InternalBooking extends Model
         'date' => 'date',
         'validated' => 'boolean',
     ];
+
+    public static function bookingLimitations()
+    {
+        $today = Carbon::today();
+        $settings = DB::table('settings')->first();
+
+        $min = $settings ? $today->copy()->addDays($settings->internal_reservation_from) : $today;
+        $max = $settings ? $today->copy()->addDays($settings->internal_reservation_to) : $today;
+
+        $disabled = [];
+
+        // Add blocked dates to disabled dates
+        $bookingBlocking = BookingBlocking::where('from', '>=', $min)->get();
+        foreach ($bookingBlocking as $blocking) {
+            $dates = CarbonPeriod::since($blocking->from)->until($blocking->to)->toArray();
+
+            foreach ($dates as $date) {
+                array_push($disabled, $date->toDateString());
+            }
+        }
+
+        $disabled = array_unique($disabled);
+
+        return [
+            'min' => $min->isoFormat('YYYY-MM-DD'),
+            'max' => $max->isoFormat('YYYY-MM-DD'),
+            'disabled' => $disabled,
+        ];
+    }
 
     public function validateBooking()
     {

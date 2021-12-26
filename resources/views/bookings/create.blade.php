@@ -65,4 +65,6 @@
             <a href="{{ route('bookings.index') }}" class="btn btn-link">Annuler</a>
         </form>
     </div>
+
+    @include('includes.flatpickr', ['element' => '#date', 'bookingLimitations' => $bookingLimitations])
 @endsection

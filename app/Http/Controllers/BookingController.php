@@ -44,7 +44,9 @@ class BookingController extends Controller
      */
     public function create()
     {
-        return view('bookings.create');
+        $bookingLimitations = Booking::bookingLimitations();
+
+        return view('bookings.create', compact('bookingLimitations'));
     }
 
     /**
@@ -82,7 +84,9 @@ class BookingController extends Controller
      */
     public function edit(Booking $booking)
     {
-        return view('bookings.edit', compact('booking'));
+        $bookingLimitations = Booking::bookingLimitations();
+
+        return view('bookings.edit', compact('booking', 'bookingLimitations'));
     }
 
     /**

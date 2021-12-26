@@ -46,8 +46,9 @@ class InternalBookingController extends Controller
     public function create()
     {
         $spaces = Space::orderBy('name')->get();
+        $bookingLimitations = InternalBooking::bookingLimitations();
 
-        return view('internal_bookings.create', compact('spaces'));
+        return view('internal_bookings.create', compact('spaces', 'bookingLimitations'));
     }
 
     /**
@@ -87,8 +88,9 @@ class InternalBookingController extends Controller
     public function edit(InternalBooking $internalBooking)
     {
         $spaces = Space::orderBy('name')->get();
+        $bookingLimitations = InternalBooking::bookingLimitations();
 
-        return view('internal_bookings.edit', compact('internalBooking', 'spaces'));
+        return view('internal_bookings.edit', compact('internalBooking', 'spaces', 'bookingLimitations'));
     }
 
     /**

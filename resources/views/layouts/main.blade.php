@@ -34,7 +34,7 @@
                             @endif
                         </ul>
                         <ul class="navbar-nav ms-auto">
-                            @can ('viewAny', App\Models\Account::class)
+                            @if (Auth::user()->isAdmin)
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAdmin" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         Administration
@@ -46,9 +46,15 @@
                                         <li>
                                             <a href="{{ route('spaces.index') }}" class="dropdown-item">Espaces</a>
                                         </li>
+                                        <li>
+                                            <a href="{{ route('booking_blocking.index') }}" class="dropdown-item">Blocage des réservations</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('settings.index') }}" class="dropdown-item">Paramètres</a>
+                                        </li>
                                     </ul>
                                 </li>
-                            @endcan
+                            @endif
                             <li class="nav-item">
                                 <form class="" action="{{ route('logout') }}" method="post">
                                     @csrf
