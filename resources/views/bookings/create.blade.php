@@ -29,7 +29,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="links" class="form-label">Liens *</label>
+                <label for="links" class="form-label">Liens</label>
                 <textarea class="form-control" id="links" rows="5" name="links"></textarea>
             </div>
 
