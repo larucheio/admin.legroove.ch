@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    <div class="container-fluid mt-3">
+    <div class="container-fluid">
         <h1 class="h6 mb-3">Modifier la réservation</h1>
 
         <form action="{{ route('internal_bookings.update', $internalBooking) }}" method="post">

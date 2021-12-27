@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    <div class="container-fluid mt-3">
+    <div class="container-fluid">
         <h1 class="h6 mb-3">Modifier une période bloquée</h1>
 
         <form action="{{ route('booking_blocking.update', $bookingBlocking) }}" method="post" class="row g-3">

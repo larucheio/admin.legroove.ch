@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    <div class="container-fluid mt-3">
+    <div class="container-fluid">
         @if (Auth::user()->isAdmin)
             <section>
                 <h1 class="h6 lead">En attente de validation</h1>

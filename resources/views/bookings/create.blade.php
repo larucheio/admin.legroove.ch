@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    <div class="container-fluid mt-3">
+    <div class="container-fluid">
         <h1 class="h6 mb-3">Nouvelle réservation publique</h1>
 
         <form action="{{ route('bookings.store') }}" method="post">
