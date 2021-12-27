@@ -39,6 +39,39 @@ class Booking extends Model
         'validated' => 'boolean',
     ];
 
+    public function account()
+    {
+        return $this->belongsTo(Account::class);
+    }
+
+    public function medias()
+    {
+        return $this->hasMany(BookingMedia::class);
+    }
+
+    public function getIsPastAttribute()
+    {
+        return $this->date->isPast();
+    }
+
+    public function storeMedias($request)
+    {
+        if ($request->hasfile('medias')) {
+            foreach ($request->file('medias') as $file) {
+                $path = $file->store('bookings/medias', 'public');
+                $this->medias()->create(['path' => $path]);
+            }
+        }
+    }
+
+    public function validateBooking()
+    {
+        if (Auth::user()->can('validateBooking', $this)) {
+            $this->validated = true;
+            $this->save();
+        }
+    }
+
     public static function bookingLimitations()
     {
         $today = Carbon::today();
@@ -69,23 +102,5 @@ class Booking extends Model
             'max' => $max->isoFormat('YYYY-MM-DD'),
             'disabled' => $disabled,
         ];
-    }
-
-    public function validateBooking()
-    {
-        if (Auth::user()->can('validateBooking', $this)) {
-            $this->validated = true;
-            $this->save();
-        }
-    }
-
-    public function account()
-    {
-        return $this->belongsTo(Account::class);
-    }
-
-    public function getIsPastAttribute()
-    {
-        return $this->date->isPast();
     }
 }

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\BookingBlockingController;
+use App\Http\Controllers\BookingMediaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InternalBookingController;
 use App\Http\Controllers\SpaceController;
@@ -34,6 +35,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/bookings/{booking}/validate', [BookingController::class, 'validateBooking'])->name('bookings.validate');
     Route::resource('bookings', BookingController::class);
+    Route::resource('bookings.medias', BookingMediaController::class)->only(['destroy'])->parameters(['medias' => 'booking_media']);
 
     Route::get('/internal_bookings/{internalBooking}/validate', [InternalBookingController::class, 'validateBooking'])->name('internal_bookings.validate');
     Route::resource('internal_bookings', InternalBookingController::class);

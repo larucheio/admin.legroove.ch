@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <h1 class="h6 mb-3">Nouvelle réservation publique</h1>
 
-        <form action="{{ route('bookings.store') }}" method="post">
+        <form action="{{ route('bookings.store') }}" method="post" enctype="multipart/form-data">
             @csrf
 
             <p><b>Informations publiques</b></p>
@@ -41,6 +41,11 @@
             <div class="mb-3">
                 <label for="style" class="form-label">Style</label>
                 <input type="text" class="form-control" id="style" name="style">
+            </div>
+
+            <div class="mb-3">
+                <label for="medias" class="form-label">Média(s)</label>
+                <input class="form-control" type="file" id="medias" name="medias[]" multiple>
             </div>
 
             <hr class="my-5">

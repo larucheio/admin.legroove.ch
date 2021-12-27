@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <h1 class="h6 mb-3">Modifier la réservation</h1>
 
-        <form action="{{ route('bookings.update', $booking) }}" method="post">
+        <form action="{{ route('bookings.update', $booking) }}" method="post" enctype="multipart/form-data">
             @csrf
             @method('PATCH')
 
@@ -41,6 +41,11 @@
             <div class="mb-3">
                 <label for="style" class="form-label">Style</label>
                 <input type="text" class="form-control" id="style" name="style" value="{{ $booking->style }}">
+            </div>
+
+            <div class="mb-3">
+                <label for="medias" class="form-label">Ajouter des média(s)</label>
+                <input class="form-control" type="file" id="medias" name="medias[]" multiple>
             </div>
 
             <hr class="my-5">

@@ -48,6 +48,23 @@
             {!! nl2br(e($booking->contact)) !!}
         </p>
 
+        <p>
+            <b>Média(s)</b>
+            <br>
+            @foreach ($booking->medias as $key => $bookingMedia)
+                <div class="mb-3">
+                    <a href="{{ Storage::url($bookingMedia->path) }}" target="_blank" rel="noreferrer">Media {{ $key + 1 }}</a>
+                    @can ('delete', $bookingMedia)
+                        <form action="{{ route('bookings.medias.destroy', [$booking, $bookingMedia]) }}" method="post" class="d-inline-block ms-3">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-sm btn-danger">Supprimer</button>
+                        </form>
+                    @endcan
+                </div>
+            @endforeach
+        </p>
+
         @canany(['validateBooking', 'update', 'delete'], $booking)
             <hr>
             @can('validateBooking', $booking)

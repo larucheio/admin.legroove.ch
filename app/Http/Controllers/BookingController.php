@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Booking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 use Carbon\Carbon;
 
@@ -61,6 +62,7 @@ class BookingController extends Controller
 
         $booking = $user->bookings()->create($request->all());
         $booking->validateBooking();
+        $booking->storeMedias($request);
 
         return redirect()->route('bookings.show', $booking);
     }
@@ -99,6 +101,7 @@ class BookingController extends Controller
     public function update(Request $request, Booking $booking)
     {
         $booking->update($request->all());
+        $booking->storeMedias($request);
 
         return redirect()->route('bookings.show', $booking);
     }
@@ -111,6 +114,7 @@ class BookingController extends Controller
      */
     public function destroy(Booking $booking)
     {
+        Storage::disk('public')->delete($booking->medias->pluck('path')->toArray());
         $booking->delete();
 
         return redirect()->route('bookings.index');
