@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BookingBlocking;
 use Illuminate\Http\Request;
+use App\Models\BookingBlocking;
 
 class BookingBlockingController extends Controller
 {
@@ -42,7 +42,7 @@ class BookingBlockingController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\Request  $request
+     * @param  Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -77,7 +77,7 @@ class BookingBlockingController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\Request  $request
+     * @param  Illuminate\Http\Request  $request
      * @param  \App\Models\BookingBlocking  $bookingBlocking
      * @return \Illuminate\Http\Response
      */
