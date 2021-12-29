@@ -2,7 +2,12 @@
 
 @section('content')
     <div class="container-fluid">
-        <h1 class="h6 mb-3">{{ $internalBooking->title }} - Réservation interne</h1>
+        <h1 class="h6 mb-3">
+            {{ $internalBooking->title }} - Réservation interne
+            @if (!$booking->validated)
+                <span class="badge bg-warning text-dark">Non validé</span>
+            @endif
+        </h1>
 
         <p>
             @if ($internalBooking->account)
