@@ -71,6 +71,14 @@ class InternalBooking extends Model
         }
     }
 
+    public function invalidateBooking()
+    {
+        if (Auth::user()->can('invalidateBooking', $this)) {
+            $this->validated = false;
+            $this->save();
+        }
+    }
+
     public function account()
     {
         return $this->belongsTo(Account::class);

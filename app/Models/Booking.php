@@ -72,6 +72,14 @@ class Booking extends Model
         }
     }
 
+    public function invalidateBooking()
+    {
+        if (Auth::user()->can('invalidateBooking', $this)) {
+            $this->validated = false;
+            $this->save();
+        }
+    }
+
     public static function bookingLimitations()
     {
         $today = Carbon::today();

@@ -34,6 +34,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('spaces', SpaceController::class)->except(['show']);
 
     Route::get('/bookings/{booking}/validate', [BookingController::class, 'validateBooking'])->name('bookings.validate');
+    Route::get('/bookings/{booking}/invalidate', [BookingController::class, 'invalidateBooking'])->name('bookings.invalidate');
     Route::resource('bookings', BookingController::class);
     Route::resource('bookings.medias', BookingMediaController::class)->only(['destroy'])->parameters(['medias' => 'booking_media']);
 

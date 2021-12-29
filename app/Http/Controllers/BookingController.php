@@ -140,4 +140,17 @@ class BookingController extends Controller
 
         return redirect()->route('bookings.show', $booking);
     }
+
+    /**
+     * Invalidate the specified resource in storage.
+     *
+     * @param  \App\Models\Booking  $booking
+     * @return \Illuminate\Http\Response
+     */
+    public function invalidateBooking(Booking $booking)
+    {
+        $booking->invalidateBooking();
+
+        return redirect()->route('bookings.show', $booking);
+    }
 }

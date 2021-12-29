@@ -65,10 +65,13 @@
             @endforeach
         </p>
 
-        @canany(['validateBooking', 'update', 'delete'], $booking)
+        @canany(['validateBooking', 'invalidateBooking', 'update', 'delete'], $booking)
             <hr>
             @can('validateBooking', $booking)
                 <a href="{{ route('bookings.validate', $booking) }}" class="btn btn-success btn-sm">Valider</a>
+            @endcan
+            @can('invalidateBooking', $booking)
+                <a href="{{ route('bookings.invalidate', $booking) }}" class="btn btn-warning btn-sm">Invalider</a>
             @endcan
             @can('update', $booking)
                 <a href="{{ route('bookings.edit', $booking) }}" class="btn btn-primary btn-sm">Modifier</a>

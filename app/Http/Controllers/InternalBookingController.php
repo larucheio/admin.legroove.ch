@@ -133,4 +133,17 @@ class InternalBookingController extends Controller
 
         return redirect()->route('internal_bookings.show', $internalBooking);
     }
+
+    /**
+     * Invalidate the specified resource in storage.
+     *
+     * @param  \App\Models\InternalBooking  $internalBooking
+     * @return \Illuminate\Http\Response
+     */
+    public function invalidateBooking(InternalBooking $internalBooking)
+    {
+        $internalBooking->invalidateBooking();
+
+        return redirect()->route('internal_bookings.show', $internalBooking);
+    }
 }

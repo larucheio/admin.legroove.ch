@@ -39,10 +39,13 @@
             {!! nl2br(e($internalBooking->complementary_informations)) !!}
         </p>
 
-        @canany(['validateBooking', 'update', 'delete'], $internalBooking)
+        @canany(['validateBooking', 'invalidateBooking', 'update', 'delete'], $internalBooking)
             <hr>
             @can('validateBooking', $internalBooking)
                 <a href="{{ route('internal_bookings.validate', $internalBooking) }}" class="btn btn-success btn-sm">Valider</a>
+            @endcan
+            @can('invalidateBooking', $booking)
+                <a href="{{ route('bookings.invalidate', $booking) }}" class="btn btn-warning btn-sm">Invalider</a>
             @endcan
             @can('update', $internalBooking)
                 <a href="{{ route('internal_bookings.edit', $internalBooking) }}" class="btn btn-primary btn-sm">Modifier</a>

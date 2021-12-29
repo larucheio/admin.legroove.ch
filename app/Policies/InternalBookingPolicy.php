@@ -127,4 +127,16 @@ class InternalBookingPolicy
 
         return $account->isAdmin;
     }
+
+    /**
+     * Determine whether the account can invalidate the model.
+     *
+     * @param  \App\Models\Account  $account
+     * @param  \App\Models\Booking  $booking
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function invalidateBooking(Account $account, Booking $booking)
+    {
+        return $booking->validated && $account->isAdmin;
+    }
 }
