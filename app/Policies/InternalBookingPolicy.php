@@ -81,6 +81,10 @@ class InternalBookingPolicy
             return true;
         }
 
+        if ($internalBooking->validated) {
+            return false;
+        }
+
         if ($internalBooking->isPast) {
             return false;
         }
