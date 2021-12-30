@@ -17,6 +17,7 @@ class AccountController extends Controller
     public function __construct()
     {
         $this->authorizeResource(Account::class, 'account');
+        $this->middleware('password.confirm')->except(['index', 'show']);
     }
 
     /**
