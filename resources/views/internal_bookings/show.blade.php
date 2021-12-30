@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <h1 class="h6 mb-3">
             {{ $internalBooking->title }} - Réservation interne
-            @if (!$booking->validated)
+            @if (!$internalBooking->validated)
                 <span class="badge bg-warning text-dark">Non validé</span>
             @endif
         </h1>
@@ -49,8 +49,8 @@
             @can('validateBooking', $internalBooking)
                 <a href="{{ route('internal_bookings.validate', $internalBooking) }}" class="btn btn-success btn-sm">Valider</a>
             @endcan
-            @can('invalidateBooking', $booking)
-                <a href="{{ route('bookings.invalidate', $booking) }}" class="btn btn-warning btn-sm">Invalider</a>
+            @can('invalidateBooking', $internalBooking)
+                <a href="{{ route('internal_bookings.invalidate', $internalBooking) }}" class="btn btn-warning btn-sm">Invalider</a>
             @endcan
             @can('update', $internalBooking)
                 <a href="{{ route('internal_bookings.edit', $internalBooking) }}" class="btn btn-primary btn-sm">Modifier</a>

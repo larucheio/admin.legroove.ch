@@ -116,7 +116,7 @@ class InternalBookingPolicy
      * Determine whether the account can validate the model.
      *
      * @param  \App\Models\Account  $account
-     * @param  \App\Models\Booking  $booking
+     * @param  \App\Models\InternalBooking  $internalBooking
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function validateBooking(Account $account, InternalBooking $internalBooking)
@@ -132,11 +132,11 @@ class InternalBookingPolicy
      * Determine whether the account can invalidate the model.
      *
      * @param  \App\Models\Account  $account
-     * @param  \App\Models\Booking  $booking
+     * @param  \App\Models\InternalBooking  $internalBooking
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function invalidateBooking(Account $account, Booking $booking)
+    public function invalidateBooking(Account $account, InternalBooking $internalBooking)
     {
-        return $booking->validated && $account->isAdmin;
+        return $internalBooking->validated && $account->isAdmin;
     }
 }
