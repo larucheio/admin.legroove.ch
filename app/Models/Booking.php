@@ -86,17 +86,23 @@ class Booking extends Model
         $settings = DB::table('settings')->first();
 
         $min = $settings ? $today->copy()->addDays($settings->public_reservation_from) : $today;
-        $max = $settings ? $today->copy()->addDays($settings->public_reservation_to) : $today;
+        $max = $settings ? $today->copy()->addDays($settings->public_reservation_to) : $today->copy()->addYear();
+
+        if (Auth::user()->isAdmin) {
+            $min = $today;
+        }
 
         $disabled = [];
 
-        // Add blocked dates to disabled dates
-        $bookingBlocking = BookingBlocking::where('from', '>=', $min)->get();
-        foreach ($bookingBlocking as $blocking) {
-            $dates = CarbonPeriod::since($blocking->from)->until($blocking->to)->toArray();
+        if (!Auth::user()->isAdmin) {
+            // Add blocked dates to disabled dates
+            $bookingBlocking = BookingBlocking::where('from', '>=', $min)->get();
+            foreach ($bookingBlocking as $blocking) {
+                $dates = CarbonPeriod::since($blocking->from)->until($blocking->to)->toArray();
 
-            foreach ($dates as $date) {
-                array_push($disabled, $date->toDateString());
+                foreach ($dates as $date) {
+                    array_push($disabled, $date->toDateString());
+                }
             }
         }
 
