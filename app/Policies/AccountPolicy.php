@@ -29,7 +29,7 @@ class AccountPolicy
      */
     public function view(Account $account, Account $model)
     {
-        //
+        return $account->isAdmin;
     }
 
     /**
