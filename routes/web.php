@@ -39,5 +39,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('bookings.medias', BookingMediaController::class)->only(['destroy'])->parameters(['medias' => 'booking_media']);
 
     Route::get('/internal_bookings/{internalBooking}/validate', [InternalBookingController::class, 'validateBooking'])->name('internal_bookings.validate');
+    Route::get('/internal_bookings/{internalBooking}/invalidate', [InternalBookingController::class, 'invalidateBooking'])->name('internal_bookings.invalidate');
     Route::resource('internal_bookings', InternalBookingController::class);
 });
