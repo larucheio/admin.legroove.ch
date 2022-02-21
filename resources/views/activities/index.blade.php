@@ -5,7 +5,7 @@
         <h1 class="h6 mb-3">Activités</h1>
 
         <p>
-            <a href="{{ route('internal_bookings.create') }}">Nouvelle réservation</a>
+            <a href="{{ route('activities.create') }}">Nouvelle activité</a>
         </p>
 
         <section>
@@ -23,7 +23,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($internalBookings['actual'] as $booking)
+                        @foreach ($activities['actual'] as $booking)
                             <tr>
                                 <td>
                                     @if ($booking->account)
@@ -42,7 +42,7 @@
                                 <td>{{ $booking->opening_hours }}</td>
                                 <td>{{ $booking->spaces->implode('name', ', ') }}</td>
                                 <td>
-                                    <a href="{{ route('internal_bookings.show', $booking) }}" class="btn btn-primary btn-sm">Détails</a>
+                                    <a href="{{ route('activities.show', $booking) }}" class="btn btn-primary btn-sm">Détails</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -66,7 +66,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($internalBookings['past'] as $booking)
+                        @foreach ($activities['past'] as $booking)
                             <tr>
                                 <td>
                                     @if ($booking->account)
@@ -85,7 +85,7 @@
                                 <td>{{ $booking->opening_hours }}</td>
                                 <td>{{ $booking->spaces->implode('name', ', ') }}</td>
                                 <td>
-                                    <a href="{{ route('internal_bookings.show', $booking) }}" class="btn btn-primary btn-sm">Détails</a>
+                                    <a href="{{ route('activities.show', $booking) }}" class="btn btn-primary btn-sm">Détails</a>
                                 </td>
                             </tr>
                         @endforeach

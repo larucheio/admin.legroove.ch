@@ -75,7 +75,7 @@
             @endif
 
             <button type="submit" class="btn btn-primary">Modifier</button>
-            <a href="{{ route('internal_bookings.show', $booking) }}" class="btn btn-link">Annuler</a>
+            <a href="{{ route('activities.show', $booking) }}" class="btn btn-link">Annuler</a>
         </form>
 
         @include('includes.flatpickr', ['element' => '#date', 'bookingLimitations' => $bookingLimitations])

@@ -85,8 +85,8 @@ class Booking extends Model
         $today = Carbon::today();
         $settings = DB::table('settings')->first();
 
-        $min = $settings ? $today->copy()->addDays($settings->public_reservation_from) : $today;
-        $max = $settings ? $today->copy()->addDays($settings->public_reservation_to) : $today->copy()->addYear();
+        $min = $settings ? $today->copy()->addDays($settings->booking_dateplus_min) : $today;
+        $max = $settings ? $today->copy()->addDays($settings->booking_dateplus_to) : $today->copy()->addYear();
 
         if (Auth::user()->isAdmin) {
             $min = $today;

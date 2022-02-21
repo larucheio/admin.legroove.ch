@@ -37,9 +37,9 @@ class Account extends Authenticatable
         return $this->hasMany(Booking::class);
     }
 
-    public function internalBookings()
+    public function activities()
     {
-        return $this->hasMany(InternalBooking::class);
+        return $this->hasMany(Activity::class);
     }
 
     public function getRoleDisplayAttribute()

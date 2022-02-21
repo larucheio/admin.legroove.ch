@@ -3,11 +3,11 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\BookingBlockingController;
 use App\Http\Controllers\BookingMediaController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\InternalBookingController;
 use App\Http\Controllers\SpaceController;
 use App\Http\Controllers\SettingsController;
 
@@ -38,7 +38,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('bookings', BookingController::class);
     Route::resource('bookings.medias', BookingMediaController::class)->only(['destroy'])->parameters(['medias' => 'booking_media']);
 
-    Route::get('/internal_bookings/{internalBooking}/validate', [InternalBookingController::class, 'validateBooking'])->name('internal_bookings.validate');
-    Route::get('/internal_bookings/{internalBooking}/invalidate', [InternalBookingController::class, 'invalidateBooking'])->name('internal_bookings.invalidate');
-    Route::resource('internal_bookings', InternalBookingController::class);
+    Route::get('/activities/{activity}/validate', [ActivityController::class, 'validateBooking'])->name('activities.validate');
+    Route::get('/activities/{activity}/invalidate', [ActivityController::class, 'invalidateBooking'])->name('activities.invalidate');
+    Route::resource('activities', ActivityController::class);
 });

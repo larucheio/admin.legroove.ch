@@ -16,10 +16,10 @@ class Settings extends Migration
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
 
-            $table->integer('public_reservation_from');
-            $table->integer('public_reservation_to');
-            $table->integer('internal_reservation_from');
-            $table->integer('internal_reservation_to');
+            $table->integer('booking_dateplus_min');
+            $table->integer('booking_dateplus_to');
+            $table->integer('activity_dateplus_from');
+            $table->integer('activity_dateplus_to');
         });
     }
 

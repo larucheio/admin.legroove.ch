@@ -29,7 +29,7 @@
                                     <a href="{{ route('bookings.index') }}" class="nav-link">Programmation</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('internal_bookings.index') }}" class="nav-link">Activités</a>
+                                    <a href="{{ route('activities.index') }}" class="nav-link">Activités</a>
                                 </li>
                             @endif
                         </ul>

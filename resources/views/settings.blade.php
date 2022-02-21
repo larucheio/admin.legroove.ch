@@ -10,22 +10,22 @@
 
                 <b>Programmation</b>
                 <div class="col-md-6">
-                    <label for="publicReservationFrom" class="form-label">Peut faire une réservation dès t+n jours</label>
-                    <input type="number" class="form-control" id="publicReservationFrom" name="public_reservation_from" value="{{ $settings ? $settings->public_reservation_from : null }}" required>
+                    <label for="booking_dateplus_min" class="form-label">Peut faire une réservation dès t+n jours</label>
+                    <input type="number" class="form-control" id="booking_dateplus_min" name="booking_dateplus_min" value="{{ $settings ? $settings->booking_dateplus_min : null }}" required>
                 </div>
                 <div class="col-md-6">
-                    <label for="publicReservationTo" class="form-label">Jusqu'à t+n jours</label>
-                    <input type="number" class="form-control" id="publicReservationTo" name="public_reservation_to" value="{{ $settings ? $settings->public_reservation_to : null }}" required>
+                    <label for="booking_dateplus_to" class="form-label">Jusqu'à t+n jours</label>
+                    <input type="number" class="form-control" id="booking_dateplus_to" name="booking_dateplus_to" value="{{ $settings ? $settings->booking_dateplus_to : null }}" required>
                 </div>
 
                 <b>Activités</b>
                 <div class="col-md-6">
-                    <label for="internalReservationFrom" class="form-label">Peut faire une réservation dès t+n jours</label>
-                    <input type="number" class="form-control" id="internalReservationFrom" name="internal_reservation_from" value="{{ $settings ? $settings->internal_reservation_from : null }}" required>
+                    <label for="activity_dateplus_from" class="form-label">Peut faire une réservation dès t+n jours</label>
+                    <input type="number" class="form-control" id="activity_dateplus_from" name="activity_dateplus_from" value="{{ $settings ? $settings->activity_dateplus_from : null }}" required>
                 </div>
                 <div class="col-md-6">
-                    <label for="internalReservationTo" class="form-label">Jusqu'à t+n jours</label>
-                    <input type="number" class="form-control" id="internalReservationTo" name="internal_reservation_to" value="{{ $settings ? $settings->internal_reservation_to : null }}" required>
+                    <label for="activity_dateplus_to" class="form-label">Jusqu'à t+n jours</label>
+                    <input type="number" class="form-control" id="activity_dateplus_to" name="activity_dateplus_to" value="{{ $settings ? $settings->activity_dateplus_to : null }}" required>
                 </div>
 
                 <div class="col-12">

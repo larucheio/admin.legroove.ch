@@ -19,7 +19,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($bookings['public'] as $booking)
+                                    @foreach ($bookings['bookings'] as $booking)
                                         <tr>
                                             <td>
                                                 @if ($booking->account)
@@ -58,7 +58,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($bookings['internal'] as $booking)
+                                    @foreach ($bookings['activities'] as $booking)
                                         <tr>
                                             <td>
                                                 @if ($booking->account)
@@ -76,7 +76,7 @@
                                             <td>{{ $booking->opening_hours }}</td>
                                             <td>{{ $booking->spaces->implode('name', ', ') }}</td>
                                             <td>
-                                                <a href="{{ route('internal_bookings.show', $booking) }}" class="btn btn-primary btn-sm">Détails</a>
+                                                <a href="{{ route('activities.show', $booking) }}" class="btn btn-primary btn-sm">Détails</a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -105,7 +105,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($today['public'] as $booking)
+                                @foreach ($today['bookings'] as $booking)
                                     <tr>
                                         <td>
                                             @if ($booking->account)
@@ -145,7 +145,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($today['internal'] as $booking)
+                                @foreach ($today['activities'] as $booking)
                                     <tr>
                                         <td>
                                             @if ($booking->account)
@@ -163,7 +163,7 @@
                                         <td>{{ $booking->opening_hours }}</td>
                                         <td>{{ $booking->spaces->implode('name', ', ') }}</td>
                                         <td>
-                                            <a href="{{ route('internal_bookings.show', $booking) }}" class="btn btn-primary btn-sm">Détails</a>
+                                            <a href="{{ route('activities.show', $booking) }}" class="btn btn-primary btn-sm">Détails</a>
                                         </td>
                                     </tr>
                                 @endforeach

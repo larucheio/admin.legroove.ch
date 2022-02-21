@@ -22,7 +22,7 @@ class Kernel extends ConsoleKernel
             $today = Carbon::today();
 
             DB::table('bookings')->whereDate('date', '<', $today)->where('validated', false)->delete();
-            DB::table('internal_bookings')->whereDate('date', '<', $today)->where('validated', false)->delete();
+            DB::table('activities')->whereDate('date', '<', $today)->where('validated', false)->delete();
         })->dailyAt('4:00');
     }
 

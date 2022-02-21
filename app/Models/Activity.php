@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 
-class InternalBooking extends Model
+class Activity extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -39,8 +39,8 @@ class InternalBooking extends Model
         $today = Carbon::today();
         $settings = DB::table('settings')->first();
 
-        $min = $settings ? $today->copy()->addDays($settings->internal_reservation_from) : $today;
-        $max = $settings ? $today->copy()->addDays($settings->internal_reservation_to) : $today->copy()->addYear();
+        $min = $settings ? $today->copy()->addDays($settings->activity_dateplus_from) : $today;
+        $max = $settings ? $today->copy()->addDays($settings->activity_dateplus_to) : $today->copy()->addYear();
 
         if (Auth::user()->isAdmin) {
             $min = $today;

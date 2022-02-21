@@ -31,17 +31,17 @@ class SettingsController extends Controller
             DB::table('settings')
             ->where('id', $settings->id)
             ->update([
-                'public_reservation_from' => $request->public_reservation_from,
-                'public_reservation_to' => $request->public_reservation_to,
-                'internal_reservation_from' => $request->internal_reservation_from,
-                'internal_reservation_to' => $request->internal_reservation_to,
+                'booking_dateplus_min' => $request->booking_dateplus_min,
+                'booking_dateplus_to' => $request->booking_dateplus_to,
+                'activity_dateplus_from' => $request->activity_dateplus_from,
+                'activity_dateplus_to' => $request->activity_dateplus_to,
             ]);
         } else {
             DB::table('settings')->insert([
-                'public_reservation_from' => $request->public_reservation_from,
-                'public_reservation_to' => $request->public_reservation_to,
-                'internal_reservation_from' => $request->internal_reservation_from,
-                'internal_reservation_to' => $request->internal_reservation_to,
+                'booking_dateplus_min' => $request->booking_dateplus_min,
+                'booking_dateplus_to' => $request->booking_dateplus_to,
+                'activity_dateplus_from' => $request->activity_dateplus_from,
+                'activity_dateplus_to' => $request->activity_dateplus_to,
             ]);
         }
 

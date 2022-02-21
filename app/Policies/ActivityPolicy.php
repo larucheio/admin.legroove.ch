@@ -3,10 +3,10 @@
 namespace App\Policies;
 
 use App\Models\Account;
-use App\Models\InternalBooking;
+use App\Models\Activity;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class InternalBookingPolicy
+class ActivityPolicy
 {
     use HandlesAuthorization;
 
@@ -25,10 +25,10 @@ class InternalBookingPolicy
      * Determine whether the account can view the model.
      *
      * @param  \App\Models\Account  $account
-     * @param  \App\Models\InternalBooking  $internalBooking
+     * @param  \App\Models\Activity  $activity
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(Account $account, InternalBooking $internalBooking)
+    public function view(Account $account, Activity $activity)
     {
         return $account->isTeam;
     }
@@ -48,58 +48,58 @@ class InternalBookingPolicy
      * Determine whether the account can update the model.
      *
      * @param  \App\Models\Account  $account
-     * @param  \App\Models\InternalBooking  $internalBooking
+     * @param  \App\Models\Activity  $activity
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(Account $account, InternalBooking $internalBooking)
+    public function update(Account $account, Activity $activity)
     {
         if ($account->isAdmin) {
             return true;
         }
 
-        if ($internalBooking->validated) {
+        if ($activity->validated) {
             return false;
         }
 
-        if ($internalBooking->isPast) {
+        if ($activity->isPast) {
             return false;
         }
 
-        return $account->id === $internalBooking->account_id;
+        return $account->id === $activity->account_id;
     }
 
     /**
      * Determine whether the account can delete the model.
      *
      * @param  \App\Models\Account  $account
-     * @param  \App\Models\InternalBooking  $internalBooking
+     * @param  \App\Models\Activity  $activity
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(Account $account, InternalBooking $internalBooking)
+    public function delete(Account $account, Activity $activity)
     {
         if ($account->isAdmin) {
             return true;
         }
 
-        if ($internalBooking->validated) {
+        if ($activity->validated) {
             return false;
         }
 
-        if ($internalBooking->isPast) {
+        if ($activity->isPast) {
             return false;
         }
 
-        return $account->id === $internalBooking->account_id;
+        return $account->id === $activity->account_id;
     }
 
     /**
      * Determine whether the account can restore the model.
      *
      * @param  \App\Models\Account  $account
-     * @param  \App\Models\InternalBooking  $internalBooking
+     * @param  \App\Models\Activity  $activity
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(Account $account, InternalBooking $internalBooking)
+    public function restore(Account $account, Activity $activity)
     {
         //
     }
@@ -108,10 +108,10 @@ class InternalBookingPolicy
      * Determine whether the account can permanently delete the model.
      *
      * @param  \App\Models\Account  $account
-     * @param  \App\Models\InternalBooking  $internalBooking
+     * @param  \App\Models\Activity  $activity
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(Account $account, InternalBooking $internalBooking)
+    public function forceDelete(Account $account, Activity $activity)
     {
         //
     }
@@ -120,12 +120,12 @@ class InternalBookingPolicy
      * Determine whether the account can validate the model.
      *
      * @param  \App\Models\Account  $account
-     * @param  \App\Models\InternalBooking  $internalBooking
+     * @param  \App\Models\Activity  $activity
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function validateBooking(Account $account, InternalBooking $internalBooking)
+    public function validateBooking(Account $account, Activity $activity)
     {
-        if ($internalBooking->validated) {
+        if ($activity->validated) {
             return false;
         }
 
@@ -136,11 +136,11 @@ class InternalBookingPolicy
      * Determine whether the account can invalidate the model.
      *
      * @param  \App\Models\Account  $account
-     * @param  \App\Models\InternalBooking  $internalBooking
+     * @param  \App\Models\Activity  $activity
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function invalidateBooking(Account $account, InternalBooking $internalBooking)
+    public function invalidateBooking(Account $account, Activity $activity)
     {
-        return $internalBooking->validated && $account->isAdmin;
+        return $activity->validated && $account->isAdmin;
     }
 }
