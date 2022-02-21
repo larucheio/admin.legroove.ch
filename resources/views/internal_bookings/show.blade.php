@@ -3,7 +3,7 @@
 @section('content')
     <div class="container-fluid">
         <h1 class="h6 mb-3">
-            {{ $internalBooking->title }} - Réservation interne
+            {{ $internalBooking->title }} - Activité
             @if (!$internalBooking->validated)
                 <span class="badge bg-warning text-dark">Non validé</span>
             @endif

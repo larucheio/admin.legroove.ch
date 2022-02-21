@@ -26,10 +26,10 @@
                             </li>
                             @if (Auth::user()->isTeam)
                                 <li class="nav-item">
-                                    <a href="{{ route('bookings.index') }}" class="nav-link">Réservations publique</a>
+                                    <a href="{{ route('bookings.index') }}" class="nav-link">Programmation</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('internal_bookings.index') }}" class="nav-link">Réservations interne</a>
+                                    <a href="{{ route('internal_bookings.index') }}" class="nav-link">Activités</a>
                                 </li>
                             @endif
                         </ul>

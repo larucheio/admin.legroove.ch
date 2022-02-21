@@ -8,7 +8,7 @@
             <form action="{{ route('settings.update') }}" method="post" class="row g-3">
                 @csrf
 
-                <b>Réservations publique</b>
+                <b>Programmation</b>
                 <div class="col-md-6">
                     <label for="publicReservationFrom" class="form-label">Peut faire une réservation dès t+n jours</label>
                     <input type="number" class="form-control" id="publicReservationFrom" name="public_reservation_from" value="{{ $settings ? $settings->public_reservation_from : null }}" required>
@@ -18,7 +18,7 @@
                     <input type="number" class="form-control" id="publicReservationTo" name="public_reservation_to" value="{{ $settings ? $settings->public_reservation_to : null }}" required>
                 </div>
 
-                <b>Réservations interne</b>
+                <b>Activités</b>
                 <div class="col-md-6">
                     <label for="internalReservationFrom" class="form-label">Peut faire une réservation dès t+n jours</label>
                     <input type="number" class="form-control" id="internalReservationFrom" name="internal_reservation_from" value="{{ $settings ? $settings->internal_reservation_from : null }}" required>

@@ -7,7 +7,7 @@
                 <h1 class="h6 lead">En attente de validation</h1>
                 <div class="row g-3">
                     <div class="col-12 col-md">
-                        <b>Réservations publiques</b>
+                        <b>Programmation</b>
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
@@ -45,7 +45,7 @@
                         </div>
                     </div>
                     <div class="col-12 col-md">
-                        <b>Réservations internes</b>
+                        <b>Activités</b>
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
@@ -93,7 +93,7 @@
 
             <div class="row g3">
                 <div class="col-12 col-md-6">
-                    <b>Public</b>
+                    <b>Programmation</b>
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
@@ -131,7 +131,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-6">
-                    <b>Interne</b>
+                    <b>Activités</b>
 
                     <div class="table-responsive">
                         <table class="table">

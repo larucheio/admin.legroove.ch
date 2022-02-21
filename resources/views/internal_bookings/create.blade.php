@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container-fluid">
-        <h1 class="h6 mb-3">Nouvelle réservation interne</h1>
+        <h1 class="h6 mb-3">Nouvelle activité</h1>
 
         <form action="{{ route('internal_bookings.store') }}" method="post">
             @csrf

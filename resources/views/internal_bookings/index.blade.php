@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container-fluid">
-        <h1 class="h6 mb-3">Réservations interne</h1>
+        <h1 class="h6 mb-3">Activités</h1>
 
         <p>
             <a href="{{ route('internal_bookings.create') }}">Nouvelle réservation</a>

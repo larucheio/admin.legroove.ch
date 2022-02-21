@@ -2,10 +2,10 @@
 
 @section('content')
     <div class="container-fluid">
-        <h1 class="h6 mb-3">Réservations publique</h1>
+        <h1 class="h6 mb-3">Programmation</h1>
 
         <p>
-            <a href="{{ route('bookings.create') }}">Nouvelle réservation</a>
+            <a href="{{ route('bookings.create') }}">Nouvelle programmation</a>
         </p>
 
         <section>
