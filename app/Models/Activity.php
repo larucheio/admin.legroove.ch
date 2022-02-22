@@ -34,6 +34,8 @@ class Activity extends Model
         'validated' => 'boolean',
     ];
 
+    protected $appends = ['url'];
+
     public static function bookingLimitations()
     {
         $today = Carbon::today();
@@ -98,5 +100,10 @@ class Activity extends Model
     public function getIsPastAttribute()
     {
         return $this->date->isPast();
+    }
+
+    public function getUrlAttribute()
+    {
+        return route('activities.show', $this->id);
     }
 }

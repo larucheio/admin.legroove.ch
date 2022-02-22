@@ -39,6 +39,8 @@ class Booking extends Model
         'validated' => 'boolean',
     ];
 
+    protected $appends = ['url'];
+
     public function account()
     {
         return $this->belongsTo(Account::class);
@@ -52,6 +54,11 @@ class Booking extends Model
     public function getIsPastAttribute()
     {
         return $this->date->isPast();
+    }
+
+    public function getUrlAttribute()
+    {
+        return route('bookings.show', $this->id);
     }
 
     public function storeMedias($request)
