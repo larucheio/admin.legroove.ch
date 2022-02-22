@@ -47,7 +47,7 @@ class BookingBlockingController extends Controller
      */
     public function store(Request $request)
     {
-        BookingBlocking::create($request->all());
+        $blocking = BookingBlocking::create($request->all());
 
         return redirect()->route('booking_blocking.index');
     }

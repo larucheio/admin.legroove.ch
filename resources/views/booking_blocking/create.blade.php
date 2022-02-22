@@ -7,12 +7,21 @@
         <form action="{{ route('booking_blocking.store') }}" method="post" class="row g-3">
             @csrf
 
-            <div class="col-md-6">
+            <div class="col-md-4">
+                <label for="type_to_block" class="form-label">Bloquer *</label>
+                <select class="form-select" id="type_to_block" name="type_to_block" required>
+                    <option value="activity,booking" selected>Activité & Programmation</option>
+                    <option value="activity">Activité</option>
+                    <option value="booking">Programmation</option>
+                </select>
+            </div>
+
+            <div class="col-md-4">
                 <label for="from" class="form-label">De *</label>
                 <input type="date" class="form-control" id="from" name="from" required>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <label for="to" class="form-label">À *</label>
                 <input type="date" class="form-control" id="to" name="to" required>
             </div>

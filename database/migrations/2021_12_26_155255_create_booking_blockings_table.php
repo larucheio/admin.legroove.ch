@@ -19,6 +19,7 @@ class CreateBookingBlockingsTable extends Migration
 
             $table->date('from');
             $table->date('to');
+            $table->set('type_to_block', ['activity', 'booking']);
         });
     }
 

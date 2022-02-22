@@ -12,6 +12,7 @@ class BookingBlocking extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'type_to_block',
         'from',
         'to',
     ];
@@ -25,4 +26,18 @@ class BookingBlocking extends Model
         'from' => 'date',
         'to' => 'date',
     ];
+
+    public function getTypeToBlockDisplayAttribute()
+    {
+        switch ($this->type_to_block) {
+            case 'activity,booking':
+                return 'Activité & Programmation';
+            case 'activity':
+                return 'Activité';
+            case 'booking':
+                return 'Programmation';
+            default:
+                return null;
+        }
+    }
 }
