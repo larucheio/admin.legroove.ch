@@ -32,4 +32,7 @@
             </div>
         </form>
     </div>
+
+    @include('includes.flatpickr', ['element' => '#from'])
+    @include('includes.flatpickr', ['element' => '#to'])
 @endsection
