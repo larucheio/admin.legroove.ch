@@ -24,6 +24,8 @@ use App\Http\Controllers\SettingsController;
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/fullcalendar/json/bookings', [DashboardController::class, 'bookings']);
+    Route::get('/fullcalendar/json/activities', [DashboardController::class, 'activities']);
 
     Route::resource('booking_blocking', BookingBlockingController::class)->except(['show']);
 

@@ -12,18 +12,25 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $today = Carbon::today();
-
-        $today = [
-            'bookings' => Booking::whereDate('date', $today)->get(),
-            'activities' => Activity::whereDate('date', $today)->get(),
-        ];
-
         $bookings = [
             'bookings' => Booking::where('validated', false)->orderByDesc('date')->get(),
             'activities' => Activity::where('validated', false)->orderByDesc('date')->get(),
         ];
 
-        return view('dashboard', compact('today', 'bookings'));
+        return view('dashboard', compact('bookings'));
+    }
+
+    public function bookings(Request $request)
+    {
+        $bookings = Booking::whereBetween('date', [$request->start, $request->end])->get();
+
+        return response()->json($bookings);
+    }
+
+    public function activities(Request $request)
+    {
+        $activities = Activity::whereBetween('date', [$request->start, $request->end])->get();
+
+        return response()->json($activities);
     }
 }
