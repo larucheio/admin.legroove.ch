@@ -24,14 +24,6 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/') }}">Accueil</a>
                             </li>
-                            @if (Auth::user()->isTeam)
-                                <li class="nav-item">
-                                    <a href="{{ route('bookings.index') }}" class="nav-link">Programmation</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('activities.index') }}" class="nav-link">Activités</a>
-                                </li>
-                            @endif
                         </ul>
                         <ul class="navbar-nav ms-auto">
                             @if (Auth::user()->isAdmin)

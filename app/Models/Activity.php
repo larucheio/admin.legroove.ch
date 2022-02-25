@@ -17,9 +17,9 @@ class Activity extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'date',
         'title',
-        'opening_hours',
+        'start',
+        'end',
         'contact',
         'complementary_informations',
     ];
@@ -30,7 +30,8 @@ class Activity extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'date' => 'date',
+        'start' => 'datetime',
+        'end' => 'datetime',
         'validated' => 'boolean',
     ];
 
@@ -97,9 +98,14 @@ class Activity extends Model
         return $this->belongsToMany(Space::class);
     }
 
+    public function getDateAttribute()
+    {
+        return $this->start . ' ' . $this->end;
+    }
+
     public function getIsPastAttribute()
     {
-        return $this->date->isPast();
+        return $this->end->isPast();
     }
 
     public function getUrlAttribute()

@@ -17,16 +17,26 @@ class Booking extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'date',
         'title',
+        'start',
+        'end',
+        'price',
         'description',
-        'entry_price',
-        'links',
-        'opening_hours',
-        'style',
-        'estimated_attendance',
         'type',
-        'contact',
+        'organizer',
+        'association_name',
+        'communication_links',
+        'technical_needs',
+        'technical_light_contact',
+        'technical_sound_contact',
+        'groove_referents',
+        'groove_estimated_attendance',
+        'groove_perm',
+        'groove_accueil_artiste',
+        'groove_bar',
+        'groove_accueil',
+        'groove_benevoles_bar',
+        'groove_benevoles_vestiaires',
     ];
 
     /**
@@ -35,7 +45,8 @@ class Booking extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'date' => 'date',
+        'start' => 'datetime',
+        'end' => 'datetime',
         'validated' => 'boolean',
     ];
 
@@ -51,9 +62,26 @@ class Booking extends Model
         return $this->hasMany(BookingMedia::class);
     }
 
+    public function getDateAttribute()
+    {
+        return $this->start . ' ' . $this->end;
+    }
+
+    public function getOrganizerDisplayAttribute()
+    {
+        switch ($this->organizer) {
+            case 'collectifnocturne':
+                return 'Collectif Nocturne';
+                break;
+            case 'corner25':
+                return 'Corner 25';
+                break;
+        }
+    }
+
     public function getIsPastAttribute()
     {
-        return $this->date->isPast();
+        return $this->end->isPast();
     }
 
     public function getUrlAttribute()
@@ -87,7 +115,7 @@ class Booking extends Model
         }
     }
 
-    public static function bookingLimitations()
+    public static function bookingLimitations($end = false)
     {
         $today = Carbon::today();
         $settings = DB::table('settings')->first();
@@ -113,10 +141,13 @@ class Booking extends Model
             }
         }
 
-        // Add already made bookings to disabled dates
-        $bookings = Booking::where('date', '>=', $min)->where('date', '<', $max)->toBase()->pluck('date')->toArray();
+        if (!$end) {
+            // Add already made bookings to disabled dates
+            $bookings = Booking::where('start', '>=', $min)->where('end', '<', $max)->toBase()->pluck('start')->toArray();
+            $disabled = array_merge($disabled, $bookings);
+        }
 
-        $disabled = array_unique(array_merge($disabled, $bookings));
+        $disabled = array_unique($disabled);
 
         return [
             'min' => $min->isoFormat('YYYY-MM-DD'),

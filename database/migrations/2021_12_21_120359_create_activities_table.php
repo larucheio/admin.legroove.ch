@@ -19,9 +19,9 @@ class CreateActivitiesTable extends Migration
 
             $table->foreignId('account_id')->nullable()->constrained()->nullOnDelete();
 
-            $table->date('date');
             $table->string('title');
-            $table->string('opening_hours')->nullable();
+            $table->dateTime('start');
+            $table->dateTime('end');
             $table->text('contact');
             $table->text('complementary_informations')->nullable();
 

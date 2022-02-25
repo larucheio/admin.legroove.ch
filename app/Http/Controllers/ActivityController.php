@@ -22,23 +22,6 @@ class ActivityController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $today = Carbon::today();
-
-        $activities = [
-            'actual' => Activity::whereDate('date', '>=', $today)->orderByDesc('date')->get(),
-            'past' => Activity::whereDate('date', '<', $today)->orderBy('date')->get(),
-        ];
-
-        return view('activities.index', compact('activities'));
-    }
-
-    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response

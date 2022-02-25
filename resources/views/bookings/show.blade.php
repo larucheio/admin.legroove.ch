@@ -17,58 +17,143 @@
             @endif
         </p>
 
-        <p>
-            {{ $booking->date->isoFormat('LL') }}
-            <br>
-            Horaires: {{ $booking->opening_hours }}
-            <br>
-            Prix d'entrée: {{ $booking->entry_price }}
-            <br>
-            Liens:
-            @if ($booking->links)
+        <section>
+            <h2>Planification</h2>
+            <p>
+                {{ $booking->date }}
                 <br>
-                {{ $booking->links }}
-            @endif
-            <br>
-            Style: {{ $booking->style }}
-        </p>
+                Prix d'entrée: {{ $booking->price }}
+                <br>
+                Type: {{ $booking->type }}
+                <br>
+                Organisateur: {{ $booking->organizerDisplay }}
+                <br>
+                Nom de l'association: {{ $booking->association_name }}
+            </p>
+            <p>
+                <b>Description</b>
+                <br>
+                {!! nl2br(e($booking->description)) !!}
+            </p>
+        </section>
 
-        <p>
-            <b>Description</b>
-            <br>
-            {!! nl2br(e($booking->description)) !!}
-        </p>
-
-        <p>
-            <b>Informations privées</b>
-            <br>
-            Affluence estimée: {{ $booking->estimated_attendance }}
-            <br>
-            Type: {{ $booking->type }}
-        </p>
-
-        <p>
-            <b>Contact</b>
-            <br>
-            {!! nl2br(e($booking->contact)) !!}
-        </p>
-
-        <p>
-            <b>Média(s)</b>
-            <br>
-            @foreach ($booking->medias as $key => $bookingMedia)
-                <div class="mb-3">
-                    <a href="{{ Storage::url($bookingMedia->path) }}" target="_blank" rel="noreferrer">Media {{ $key + 1 }}</a>
-                    @can ('delete', $bookingMedia)
-                        <form action="{{ route('bookings.medias.destroy', [$booking, $bookingMedia]) }}" method="post" class="d-inline-block ms-3">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-danger">Supprimer</button>
-                        </form>
-                    @endcan
+        <section class="mt-5">
+            <h2>Communication</h2>
+            <div class="row">
+                <div class="col-md">
+                    <p>
+                        Liens:
+                        @if ($booking->communication_links)
+                            <br>
+                            {{ $booking->communication_links }}
+                        @endif
+                    </p>
                 </div>
-            @endforeach
-        </p>
+                <div class="col-md">
+                    <p>
+                        <b>Média(s)</b>
+                        <br>
+                        @foreach ($booking->medias as $key => $bookingMedia)
+                            <div class="mb-3">
+                                <a href="{{ Storage::url($bookingMedia->path) }}" target="_blank" rel="noreferrer">Media {{ $key + 1 }}</a>
+                                @can ('delete', $bookingMedia)
+                                    <form action="{{ route('bookings.medias.destroy', [$booking, $bookingMedia]) }}" method="post" class="d-inline-block ms-3">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-danger">Supprimer</button>
+                                    </form>
+                                @endcan
+                            </div>
+                        @endforeach
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mt-5">
+            <h2>Technique</h2>
+            @if ($booking->technical_needs)
+                <p>
+                    Besoins techniques
+                    <br>
+                    {{ $booking->technical_needs }}
+                </p>
+            @endif
+            @if ($booking->technical_light_contact)
+                <p>
+                    Nom(s) technique lumière
+                    <br>
+                    {{ $booking->technical_light_contact }}
+                </p>
+            @endif
+            @if ($booking->technical_sound_contact)
+                <p>
+                    Nom(s) technique son
+                    <br>
+                    {{ $booking->technical_sound_contact }}
+                </p>
+            @endif
+        </section>
+
+        <section class="mt-5">
+            <h2>Accueil / Bar / Encadrement</h2>
+            @if ($booking->groove_referents)
+                <p>
+                    Personne(s) de référence
+                    <br>
+                    {{ $booking->groove_referents }}
+                </p>
+            @endif
+            @if ($booking->groove_estimated_attendance)
+                <p>
+                    Affluence estimée
+                    <br>
+                    {{ $booking->groove_estimated_attendance }}
+                </p>
+            @endif
+            @if ($booking->groove_perm)
+                <p>
+                    Nom(s) permanence
+                    <br>
+                    {{ $booking->groove_perm }}
+                </p>
+            @endif
+            @if ($booking->groove_accueil_artiste)
+                <p>
+                    Nom(s) accueil artiste
+                    <br>
+                    {{ $booking->groove_accueil_artiste }}
+                </p>
+            @endif
+            @if ($booking->groove_bar)
+                <p>
+                    Nom(s) responsable bar
+                    <br>
+                    {{ $booking->groove_bar }}
+                </p>
+            @endif
+            @if ($booking->groove_accueil)
+                <p>
+                    Nom(s) responsable accueil
+                    <br>
+                    {{ $booking->groove_accueil }}
+                </p>
+            @endif
+            @if ($booking->groove_benevoles_bar)
+                <p>
+                    Bénévoles bar
+                    <br>
+                    {{ $booking->groove_benevoles_bar }}
+                </p>
+            @endif
+            @if ($booking->groove_benevoles_vestiaires)
+                <p>
+                    Bénévoles vestiaires
+                    <br>
+                    {{ $booking->groove_benevoles_vestiaires }}
+                </p>
+            @endif
+        </section>
 
         @canany(['validateBooking', 'invalidateBooking', 'update', 'delete'], $booking)
             <hr>

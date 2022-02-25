@@ -2,94 +2,54 @@
 
 @section('content')
     <div class="container-fluid">
-        @if (Auth::user()->isAdmin)
-            <section>
-                <h1 class="h6 lead">En attente de validation</h1>
-                <div class="row g-3">
-                    <div class="col-12 col-md">
-                        <b>Programmation</b>
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Qui?</th>
-                                        <th>Titre</th>
-                                        <th>Horaires</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($bookings['bookings'] as $booking)
-                                        <tr>
-                                            <td>
-                                                @if ($booking->account)
-                                                    {{ $booking->account->identifier }}
-                                                @else
-                                                    <i class="text-muted">Compte supprimé</i>
-                                                @endif
-                                            </td>
-                                            <td>
-                                                {{ $booking->title }}
-                                                @if (!$booking->validated)
-                                                    <span class="badge bg-warning text-dark">Non validé</span>
-                                                @endif
-                                            </td>
-                                            <td>{{ $booking->opening_hours }}</td>
-                                            <td>
-                                                <a href="{{ route('bookings.show', $booking) }}" class="btn btn-primary btn-sm">Détails</a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md">
-                        <b>Activités</b>
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Qui?</th>
-                                        <th>Titre</th>
-                                        <th>Horaires</th>
-                                        <th>Espace(s)</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($bookings['activities'] as $booking)
-                                        <tr>
-                                            <td>
-                                                @if ($booking->account)
-                                                    {{ $booking->account->identifier }}
-                                                @else
-                                                    <i class="text-muted">Compte supprimé</i>
-                                                @endif
-                                            </td>
-                                            <td>
-                                                {{ $booking->title }}
-                                                @if (!$booking->validated)
-                                                    <span class="badge bg-warning text-dark">Non validé</span>
-                                                @endif
-                                            </td>
-                                            <td>{{ $booking->opening_hours }}</td>
-                                            <td>{{ $booking->spaces->implode('name', ', ') }}</td>
-                                            <td>
-                                                <a href="{{ route('activities.show', $booking) }}" class="btn btn-primary btn-sm">Détails</a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+
+        <div class="row g-3">
+            <div class="col-lg ">
+                @if (Auth::user()->isTeam)
+                    <p>
+                        <a href="{{ route('bookings.create') }}" class="btn btn-primary">+ Programmation</a>
+                    </p>
+                    <p>
+                        <a href="{{ route('activities.create') }}" class="btn btn-primary">+ Activité</a>
+                    </p>
+                @endif
+
+                <hr>
+
+                <b>Calendriers</b>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" checked id="calendarBookings">
+                    <label class="form-check-label" for="calendarBookings">
+                        Programmation
+                    </label>
                 </div>
-            </section>
-        @endif
 
-        <hr class="my-5">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" checked id="calendarBookingsUnvalidated">
+                    <label class="form-check-label" for="calendarBookingsUnvalidated">
+                        Programmation - En attente de validation
+                    </label>
+                </div>
 
-        <div id="fullcalendar"></div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" checked id="calendarActivities">
+                    <label class="form-check-label" for="calendarActivities">
+                        Activité
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" checked id="calendarActivitiesUnvalidated">
+                    <label class="form-check-label" for="calendarActivitiesUnvalidated">
+                        Activité - En attente de vaildation
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-lg-10">
+                <div id="fullcalendar"></div>
+            </div>
+        </div>
     </div>
 @endsection

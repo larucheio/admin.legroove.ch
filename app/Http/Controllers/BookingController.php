@@ -22,32 +22,16 @@ class BookingController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $today = Carbon::today();
-
-        $bookings = [
-            'actual' => Booking::whereDate('date', '>=', $today)->orderByDesc('date')->get(),
-            'past' => Booking::whereDate('date', '<', $today)->orderBy('date')->get(),
-        ];
-
-        return view('bookings.index', compact('bookings'));
-    }
-
-    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        $bookingLimitations = Booking::bookingLimitations();
+        $bookingLimitationsStart = Booking::bookingLimitations();
+        $bookingLimitationsEnd = Booking::bookingLimitations('end');
 
-        return view('bookings.create', compact('bookingLimitations'));
+        return view('bookings.create', compact('bookingLimitationsStart', 'bookingLimitationsEnd'));
     }
 
     /**
@@ -86,9 +70,10 @@ class BookingController extends Controller
      */
     public function edit(Booking $booking)
     {
-        $bookingLimitations = Booking::bookingLimitations();
+        $bookingLimitationsStart = Booking::bookingLimitations();
+        $bookingLimitationsEnd = Booking::bookingLimitations('end');
 
-        return view('bookings.edit', compact('booking', 'bookingLimitations'));
+        return view('bookings.edit', compact('booking', 'bookingLimitationsStart', 'bookingLimitationsEnd'));
     }
 
     /**

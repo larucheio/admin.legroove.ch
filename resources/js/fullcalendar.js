@@ -5,10 +5,44 @@ import timeGridPlugin from '@fullcalendar/timegrid'
 import listPlugin from '@fullcalendar/list'
 import bootstrap5Plugin from '@fullcalendar/bootstrap5'
 
+let calendar = null
+let sources = [
+  {
+    id: 1,
+    url: '/fullcalendar/json/bookings',
+    color: 'green',
+  },
+  {
+    id: 2,
+    url: '/fullcalendar/json/bookingsUnvalidated',
+    color: 'orange'
+  },
+  {
+    id: 3,
+    url: '/fullcalendar/json/activities',
+    color: 'blue'
+  },
+  {
+    id: 4,
+    url: '/fullcalendar/json/activitiesUnvalidated',
+    color: 'orange'
+  },
+]
+
+function updateEventSource (event, sourceId) {
+  if (event.currentTarget.checked) {
+    let source = sources.find(source => source.id === sourceId)
+    calendar.addEventSource(source)
+  } else {
+    let source = calendar.getEventSourceById(sourceId)
+    source.remove()
+  }
+}
+
 document.addEventListener('DOMContentLoaded', (event) => {
   let calendarEl = document.getElementById('fullcalendar')
   if (calendarEl) {
-    let calendar = new Calendar(calendarEl, {
+    calendar = new Calendar(calendarEl, {
       plugins: [ dayGridPlugin, timeGridPlugin, listPlugin , bootstrap5Plugin ],
       themeSystem: 'bootstrap5',
       locale: frLocale,
@@ -18,18 +52,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
         center: 'title',
         right: 'dayGridMonth,timeGridWeek,listWeek'
       },
-      eventSources: [
-        {
-          url: '/fullcalendar/json/bookings',
-          color: 'green'
-        },
-        {
-          url: '/fullcalendar/json/activities',
-          color: 'blue'
-        },
-      ]
+      eventSources: sources
     })
 
     calendar.render()
   }
+
+  document.getElementById('calendarBookings').addEventListener('change', (event) => updateEventSource(event, 1))
+  document.getElementById('calendarBookingsUnvalidated').addEventListener('change', (event) => updateEventSource(event, 2))
+  document.getElementById('calendarActivities').addEventListener('change', (event) => updateEventSource(event, 3))
+  document.getElementById('calendarActivitiesUnvalidated').addEventListener('change', (event) => updateEventSource(event, 4))
 })

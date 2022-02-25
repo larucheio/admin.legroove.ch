@@ -18,9 +18,7 @@
         </p>
 
         <p>
-            {{ $activity->date->isoFormat('LL') }}
-            <br>
-            Horaires: {{ $activity->opening_hours }}
+            {{ $activity->date }}
         </p>
 
         <p class="mb-0">

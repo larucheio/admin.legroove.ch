@@ -25,7 +25,9 @@ use App\Http\Controllers\SettingsController;
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/fullcalendar/json/bookings', [DashboardController::class, 'bookings']);
+    Route::get('/fullcalendar/json/bookingsUnvalidated', [DashboardController::class, 'bookingsUnvalidated']);
     Route::get('/fullcalendar/json/activities', [DashboardController::class, 'activities']);
+    Route::get('/fullcalendar/json/activitiesUnvalidated', [DashboardController::class, 'activitiesUnvalidated']);
 
     Route::resource('booking_blocking', BookingBlockingController::class)->except(['show']);
 
@@ -37,10 +39,10 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/bookings/{booking}/validate', [BookingController::class, 'validateBooking'])->name('bookings.validate');
     Route::get('/bookings/{booking}/invalidate', [BookingController::class, 'invalidateBooking'])->name('bookings.invalidate');
-    Route::resource('bookings', BookingController::class);
+    Route::resource('bookings', BookingController::class)->except(['index']);
     Route::resource('bookings.medias', BookingMediaController::class)->only(['destroy'])->parameters(['medias' => 'booking_media']);
 
     Route::get('/activities/{activity}/validate', [ActivityController::class, 'validateBooking'])->name('activities.validate');
     Route::get('/activities/{activity}/invalidate', [ActivityController::class, 'invalidateBooking'])->name('activities.invalidate');
-    Route::resource('activities', ActivityController::class);
+    Route::resource('activities', ActivityController::class)->except(['index']);
 });
