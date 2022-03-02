@@ -58,8 +58,24 @@ document.addEventListener('DOMContentLoaded', (event) => {
     calendar.render()
   }
 
-  document.getElementById('calendarBookings').addEventListener('change', (event) => updateEventSource(event, 1))
-  document.getElementById('calendarBookingsUnvalidated').addEventListener('change', (event) => updateEventSource(event, 2))
-  document.getElementById('calendarActivities').addEventListener('change', (event) => updateEventSource(event, 3))
-  document.getElementById('calendarActivitiesUnvalidated').addEventListener('change', (event) => updateEventSource(event, 4))
+  const calendarBookings = document.getElementById('calendarBookings')
+  const calendarBookingsUnvalidated = document.getElementById('calendarBookingsUnvalidated')
+  const calendarActivities = document.getElementById('calendarActivities')
+  const calendarActivitiesUnvalidated = document.getElementById('calendarActivitiesUnvalidated')
+
+  if (calendarBookings) {
+    calendarBookings.addEventListener('change', (event) => updateEventSource(event, 1))
+  }
+
+  if (calendarBookingsUnvalidated) {
+    calendarBookingsUnvalidated.addEventListener('change', (event) => updateEventSource(event, 2))
+  }
+
+  if (calendarActivities) {
+    calendarActivities.addEventListener('change', (event) => updateEventSource(event, 3))
+  }
+
+  if (calendarActivitiesUnvalidated) {
+    calendarActivitiesUnvalidated.addEventListener('change', (event) => updateEventSource(event, 4))
+  }
 })
