@@ -22,6 +22,9 @@ class CreateActivitiesTable extends Migration
             $table->string('title');
             $table->dateTime('start');
             $table->dateTime('end');
+            $table->json('daysOfWeek')->nullable();
+            $table->date('startRecur')->nullable();
+            $table->date('endRecur')->nullable();
             $table->text('contact');
             $table->text('complementary_informations')->nullable();
 

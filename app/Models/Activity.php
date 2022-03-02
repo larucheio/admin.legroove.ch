@@ -20,6 +20,9 @@ class Activity extends Model
         'title',
         'start',
         'end',
+        'daysOfWeek',
+        'startRecur',
+        'endRecur',
         'contact',
         'complementary_informations',
     ];
@@ -32,6 +35,9 @@ class Activity extends Model
     protected $casts = [
         'start' => 'datetime',
         'end' => 'datetime',
+        'daysOfWeek' => 'array',
+        'startRecur' => 'date',
+        'endRecur' => 'date',
         'validated' => 'boolean',
     ];
 
@@ -111,5 +117,40 @@ class Activity extends Model
     public function getUrlAttribute()
     {
         return route('activities.show', $this->id);
+    }
+
+    public function getRecurringTextAttribute()
+    {
+        $days = [];
+
+        foreach ($this->daysOfWeek as $day) {
+            switch ($day) {
+                case '0':
+                    array_push($days, 'dimanche');
+                    break;
+                case '1':
+                    array_push($days, 'lundi');
+                    break;
+                case '2':
+                    array_push($days, 'mardi');
+                    break;
+                case '3':
+                    array_push($days, 'mercredi');
+                    break;
+                case '4':
+                    array_push($days, 'jeudi');
+                    break;
+                case '5':
+                    array_push($days, 'vendredi');
+                    break;
+                case '6':
+                    array_push($days, 'samedi');
+                    break;
+            }
+        }
+
+        $days = implode(', ', $days);
+
+        return "Tous les {$days}, du {$this->startRecur} au {$this->endRecur}";
     }
 }
