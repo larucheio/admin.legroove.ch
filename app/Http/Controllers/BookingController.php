@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\BookingIsValidated;
+use App\Mail\BookingRevive;
 use App\Models\Booking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
 
 use Carbon\Carbon;
 
@@ -123,6 +126,9 @@ class BookingController extends Controller
     {
         $booking->validateBooking();
 
+        // Send email notification to the newly create account
+        Mail::to($booking->account->email)->send(new BookingIsValidated($booking));
+
         return redirect()->route('bookings.show', $booking);
     }
 
@@ -135,6 +141,14 @@ class BookingController extends Controller
     public function invalidateBooking(Booking $booking)
     {
         $booking->invalidateBooking();
+
+        return redirect()->route('bookings.show', $booking);
+    }
+
+    public function revive(Booking $booking)
+    {
+        // Send email notification to the newly create account
+        Mail::to($booking->account->email)->send(new BookingRevive($booking));
 
         return redirect()->route('bookings.show', $booking);
     }

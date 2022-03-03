@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\AccountCreated;
 use App\Models\Account;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class AccountController extends Controller
 {
@@ -59,6 +61,9 @@ class AccountController extends Controller
             $account->role = $request->role;
             $account->save();
         }
+
+        // Send email notification to the newly create account
+        Mail::to($account->email)->send(new AccountCreated());
 
         return redirect()->route('accounts.index');
     }

@@ -8,6 +8,7 @@ use App\Http\Controllers\BookingController;
 use App\Http\Controllers\BookingBlockingController;
 use App\Http\Controllers\BookingMediaController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\SpaceController;
 use App\Http\Controllers\SettingsController;
 
@@ -34,11 +35,15 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/settings', [SettingsController::class, 'index'])->name('settings.index');
     Route::post('/settings', [SettingsController::class, 'update'])->name('settings.update');
 
+    Route::get('/emails', [EmailController::class, 'edit'])->name('emails.edit');
+    Route::post('/emails', [EmailController::class, 'update'])->name('emails.update');
+
     Route::resource('accounts', AccountController::class)->except(['show']);
     Route::resource('spaces', SpaceController::class)->except(['show']);
 
     Route::get('/bookings/{booking}/validate', [BookingController::class, 'validateBooking'])->name('bookings.validate');
     Route::get('/bookings/{booking}/invalidate', [BookingController::class, 'invalidateBooking'])->name('bookings.invalidate');
+    Route::get('/bookings/{booking}/revive', [BookingController::class, 'revive'])->name('bookings.revive');
     Route::resource('bookings', BookingController::class)->except(['index']);
     Route::resource('bookings.medias', BookingMediaController::class)->only(['destroy'])->parameters(['medias' => 'booking_media']);
 

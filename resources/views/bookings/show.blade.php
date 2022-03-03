@@ -155,6 +155,11 @@
             @endif
         </section>
 
+        @if (Auth::user()->isPR)
+            <hr>
+            <a href="{{ route('bookings.revive', $booking) }}" class="btn btn-primary btn-sm">Relancer pour les informations</a>
+        @endif
+
         @canany(['validateBooking', 'invalidateBooking', 'update', 'delete'], $booking)
             <hr>
             @can('validateBooking', $booking)

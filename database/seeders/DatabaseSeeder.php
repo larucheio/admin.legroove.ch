@@ -34,5 +34,33 @@ class DatabaseSeeder extends Seeder
             ['name' => 'Stock technique'],
             ['name' => 'Vestiaire'],
         ]);
+
+        // Spaces
+        DB::table('emails')->insert([
+            [
+                'identifier' => 'AccountCreated',
+                'description' => 'Email envoyé une fois un compte créé',
+                'subject' => 'Le Groove - Compte créé',
+                'body' => 'Compte créé',
+            ],
+            [
+                'identifier' => 'ActivityIsValidated',
+                'description' => 'Email envoyé lorsqu\'une activité est validée',
+                'subject' => 'Le Groove - Activité validée',
+                'body' => 'Activité validée',
+            ],
+            [
+                'identifier' => 'BookingIsValidated',
+                'description' => 'Email envoyé lorsqu\'une programmation est validée',
+                'subject' => 'Le Groove - Programmation validée',
+                'body' => 'Programmation validée',
+            ],
+            [
+                'identifier' => 'BookingRevive',
+                'description' => 'Email envoyé lors de la relance pour informations d\'une programmation',
+                'subject' => 'Le Groove - Programmation - Relance',
+                'body' => 'Programmation - Relance',
+            ],
+        ]);
     }
 }

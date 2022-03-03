@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ActivityIsValidated;
 use App\Models\Activity;
 use App\Models\Space;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 use Carbon\Carbon;
 
@@ -113,6 +115,9 @@ class ActivityController extends Controller
     public function validateBooking(Activity $activity)
     {
         $activity->validateBooking();
+
+        // Send email notification to the newly create account
+        Mail::to($activity->account->email)->send(new ActivityIsValidated($activity));
 
         return redirect()->route('activities.show', $activity);
     }

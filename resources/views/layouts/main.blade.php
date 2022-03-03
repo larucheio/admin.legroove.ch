@@ -26,23 +26,28 @@
                             </li>
                         </ul>
                         <ul class="navbar-nav ms-auto">
-                            @if (Auth::user()->isAdmin)
+                            @if (Auth::user()->isPR)
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAdmin" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         Administration
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
+                                        @if (Auth::user()->isAdmin)
+                                            <li>
+                                                <a href="{{ route('accounts.index') }}" class="dropdown-item">Comptes</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ route('spaces.index') }}" class="dropdown-item">Espaces</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ route('booking_blocking.index') }}" class="dropdown-item">Blocage des réservations</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ route('settings.index') }}" class="dropdown-item">Paramètres</a>
+                                            </li>
+                                        @endif
                                         <li>
-                                            <a href="{{ route('accounts.index') }}" class="dropdown-item">Comptes</a>
-                                        </li>
-                                        <li>
-                                            <a href="{{ route('spaces.index') }}" class="dropdown-item">Espaces</a>
-                                        </li>
-                                        <li>
-                                            <a href="{{ route('booking_blocking.index') }}" class="dropdown-item">Blocage des réservations</a>
-                                        </li>
-                                        <li>
-                                            <a href="{{ route('settings.index') }}" class="dropdown-item">Paramètres</a>
+                                            <a href="{{ route('emails.edit') }}" class="dropdown-item">Emails</a>
                                         </li>
                                     </ul>
                                 </li>
