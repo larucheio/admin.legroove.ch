@@ -110,7 +110,7 @@ class BookingController extends Controller
         Storage::disk('public')->delete($booking->medias->pluck('path')->toArray());
         $booking->delete();
 
-        return redirect()->route('bookings.index');
+        return redirect()->route('dashboard');
     }
 
     /**

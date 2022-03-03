@@ -101,7 +101,7 @@ class ActivityController extends Controller
     {
         $activity->delete();
 
-        return redirect()->route('activities.index');
+        return redirect()->route('dashboard');
     }
 
     /**
