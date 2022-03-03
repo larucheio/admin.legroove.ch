@@ -23,7 +23,7 @@
             </div>
 
             <input type="hidden" name="token" value="{{ request()->route('token') }}">
-            <button type="submit" class="btn btn-primary">Se connecter</button>
+            <button type="submit" class="btn btn-primary">Confirmer le nouveau mot de passe</button>
         </form>
     </div>
 @endsection

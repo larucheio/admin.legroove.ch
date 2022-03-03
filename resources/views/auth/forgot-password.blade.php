@@ -13,7 +13,7 @@
                 <label for="email" class="form-label">Email *</label>
                 <input type="email" class="form-control" id="email" name="email" required>
             </div>
-            <button type="submit" class="btn btn-primary">Se connecter</button>
+            <button type="submit" class="btn btn-primary">Envoyer le lien de réinitialisation</button>
         </form>
     </div>
 @endsection
