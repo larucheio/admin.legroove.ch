@@ -119,6 +119,11 @@ class Activity extends Model
         return route('activities.show', $this->id);
     }
 
+    public function getIsRecurringAttribute()
+    {
+        return implode($this->daysOfWeek);
+    }
+
     public function getRecurringTextAttribute()
     {
         $days = [];

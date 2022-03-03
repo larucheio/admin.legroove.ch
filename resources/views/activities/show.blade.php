@@ -21,12 +21,11 @@
             {{ $activity->date }}
         </p>
 
-        <p>
-            Récurrence:
-            @if ($activity->daysOfWeek)
-                {{ $activity->recurringText }}
-            @endif
-        </p>
+        @if ($activity->isRecurring)
+            <p>
+                Récurrence: {{ $activity->recurringText }}
+            </p>
+        @endif
 
         <p class="mb-0">
             <b>Espace(s)</b>
