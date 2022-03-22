@@ -37,14 +37,14 @@ class DashboardController extends Controller
     public function activities(Request $request)
     {
         $activities = Activity::where('validated', true)->where('start', '>=', $request->start)->where('end', '<=', $request->end)->get();
+        $activitiesRecurring = Activity::where('validated', true)->where('startRecur', '<=', $request->start)->get();
 
-        return response()->json($activities);
+        return response()->json($activities->merge($activitiesRecurring));
     }
 
     public function activitiesUnvalidated(Request $request)
     {
         $activities = Activity::where('validated', false)
-            ->where('start', '>=', $request->start)->where('end', '<=', $request->end)
             ->when(!Auth::user()->isAdmin, function ($query) {
                 $query->where('account_id', '=', Auth::user()->id);
             })->get();

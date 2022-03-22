@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Casts\DaysOfWeek;
+
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -35,13 +37,17 @@ class Activity extends Model
     protected $casts = [
         'start' => 'datetime',
         'end' => 'datetime',
-        'daysOfWeek' => 'array',
+        'daysOfWeek' => DaysOfWeek::class,
         'startRecur' => 'date',
         'endRecur' => 'date',
         'validated' => 'boolean',
     ];
 
-    protected $appends = ['url'];
+    protected $appends = [
+        'url',
+        'startTime',
+        'endTime',
+    ];
 
     public static function bookingLimitations()
     {
@@ -119,9 +125,25 @@ class Activity extends Model
         return route('activities.show', $this->id);
     }
 
+    public function getStartTimeAttribute()
+    {
+        if ($this->isRecurring) {
+            return $this->start->isoFormat('HH:mm:sss');
+        }
+        return null;
+    }
+
+    public function getEndTimeAttribute()
+    {
+        if ($this->isRecurring) {
+            return $this->end->isoFormat('HH:mm:sss');
+        }
+        return null;
+    }
+
     public function getIsRecurringAttribute()
     {
-        return implode($this->daysOfWeek);
+        return $this->daysOfWeek;
     }
 
     public function getRecurringTextAttribute()
