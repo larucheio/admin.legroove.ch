@@ -29,13 +29,13 @@
                     <label for="daysOfWeek" class="form-label">Récurrence *</label>
                     <select class="form-select" id="daysOfWeek" name="daysOfWeek[]" multiple required>
                         <option value="" @if (!$activity->daysOfWeek) selected @endif>Cette activité n'est pas récurrente</option>
-                        <option value="1" @if (in_array(1, $activity->daysOfWeek)) selected @endif>Tous les lundis</option>
-                        <option value="2" @if (in_array(2, $activity->daysOfWeek)) selected @endif>Tous les mardis</option>
-                        <option value="3" @if (in_array(3, $activity->daysOfWeek)) selected @endif>Tous les mercredis</option>
-                        <option value="4" @if (in_array(4, $activity->daysOfWeek)) selected @endif>Tous les jeudis</option>
-                        <option value="5" @if (in_array(5, $activity->daysOfWeek)) selected @endif>Tous les vendredis</option>
-                        <option value="6" @if (in_array(6, $activity->daysOfWeek)) selected @endif>Tous les samedis</option>
-                        <option value="0" @if (in_array(0, $activity->daysOfWeek)) selected @endif>Tous les dimanches</option>
+                        <option value="1" @if (!empty($activity->daysOfWeek) && in_array(1, $activity->daysOfWeek)) selected @endif>Tous les lundis</option>
+                        <option value="2" @if (!empty($activity->daysOfWeek) && in_array(2, $activity->daysOfWeek)) selected @endif>Tous les mardis</option>
+                        <option value="3" @if (!empty($activity->daysOfWeek) && in_array(3, $activity->daysOfWeek)) selected @endif>Tous les mercredis</option>
+                        <option value="4" @if (!empty($activity->daysOfWeek) && in_array(4, $activity->daysOfWeek)) selected @endif>Tous les jeudis</option>
+                        <option value="5" @if (!empty($activity->daysOfWeek) && in_array(5, $activity->daysOfWeek)) selected @endif>Tous les vendredis</option>
+                        <option value="6" @if (!empty($activity->daysOfWeek) && in_array(6, $activity->daysOfWeek)) selected @endif>Tous les samedis</option>
+                        <option value="0" @if (!empty($activity->daysOfWeek) && in_array(0, $activity->daysOfWeek)) selected @endif>Tous les dimanches</option>
                     </select>
                 </div>
 
