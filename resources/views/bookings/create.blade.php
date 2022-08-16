@@ -42,7 +42,7 @@
 
                     <div class="col-md">
                         <label for="organizer" class="form-label">Organisateur *</label>
-                        <select class="form-select" id="organizer" required>
+                        <select class="form-select" name="organizer" id="organizer" required>
                             <option selected></option>
                             <option value="collectifnocturne">Collectif Nocturne</option>
                             <option value="corner25">Corner 25</option>

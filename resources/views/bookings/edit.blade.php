@@ -46,7 +46,7 @@
 
                         <div class="col-md">
                             <label for="organizer" class="form-label">Organisateur *</label>
-                            <select class="form-select" id="organizer" required>
+                            <select class="form-select" name="organizer" id="organizer" required>
                                 <option value="collectifnocturne" @if ($booking->organizer === 'collectifnocturne') selected @endif>Collectif Nocturne</option>
                                 <option value="corner25" @if ($booking->organizer === 'corner25') selected @endif>Corner 25</option>
                             </select>
