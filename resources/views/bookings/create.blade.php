@@ -51,7 +51,7 @@
 
                     <div class="col-12">
                         <label for="association_name" class="form-label">Nom de l'association *</label>
-                        <input type="text" class="form-control" id="association_name" name="association_name">
+                        <input type="text" class="form-control" id="association_name" name="association_name" required>
                     </div>
                 </div>
             </section>
