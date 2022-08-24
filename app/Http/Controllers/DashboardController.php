@@ -27,9 +27,7 @@ class DashboardController extends Controller
     {
         $bookings = Booking::where('validated', false)
             ->where('start', '>=', $request->start)->where('end', '<=', $request->end)
-            ->when(!Auth::user()->isAdmin, function ($query) {
-                $query->where('account_id', '=', Auth::user()->id);
-            })->get();
+            ->get();
 
         return response()->json($bookings);
     }
@@ -45,9 +43,7 @@ class DashboardController extends Controller
     public function activitiesUnvalidated(Request $request)
     {
         $activities = Activity::where('validated', false)
-            ->when(!Auth::user()->isAdmin, function ($query) {
-                $query->where('account_id', '=', Auth::user()->id);
-            })->get();
+            ->get();
 
         return response()->json($activities);
     }
