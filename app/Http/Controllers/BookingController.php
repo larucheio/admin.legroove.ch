@@ -88,15 +88,7 @@ class BookingController extends Controller
      */
     public function update(Request $request, Booking $booking)
     {
-        if (!$booking->validated || Auth::user()->isPR) {
-            $booking->update($request->all());
-        } else {
-            $booking->update([
-                'description' => $request->description,
-                'links' => $request->links,
-            ]);
-        }
-
+        $booking->update($request->all());
         $booking->storeMedias($request);
 
         return redirect()->route('bookings.show', $booking);
