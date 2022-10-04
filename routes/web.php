@@ -7,6 +7,7 @@ use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\BookingBlockingController;
 use App\Http\Controllers\BookingMediaController;
+use App\Http\Controllers\BookingRiderController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\SpaceController;
@@ -46,6 +47,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/bookings/{booking}/revive', [BookingController::class, 'revive'])->name('bookings.revive');
     Route::resource('bookings', BookingController::class)->except(['index']);
     Route::resource('bookings.medias', BookingMediaController::class)->only(['destroy'])->parameters(['medias' => 'booking_media']);
+    Route::resource('bookings.riders', BookingRiderController::class)->only(['destroy'])->parameters(['riders' => 'booking_rider']);
 
     Route::get('/activities/{activity}/validate', [ActivityController::class, 'validateBooking'])->name('activities.validate');
     Route::get('/activities/{activity}/invalidate', [ActivityController::class, 'invalidateBooking'])->name('activities.invalidate');

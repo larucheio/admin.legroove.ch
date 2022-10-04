@@ -62,6 +62,11 @@ class Booking extends Model
         return $this->hasMany(BookingMedia::class);
     }
 
+    public function riders()
+    {
+        return $this->hasMany(BookingRider::class);
+    }
+
     public function getDateAttribute()
     {
         return $this->start . ' ' . $this->end;
@@ -95,6 +100,16 @@ class Booking extends Model
             foreach ($request->file('medias') as $file) {
                 $path = $file->store('bookings/medias', 'public');
                 $this->medias()->create(['path' => $path]);
+            }
+        }
+    }
+
+    public function storeRiders($request)
+    {
+        if ($request->hasfile('riders')) {
+            foreach ($request->file('riders') as $file) {
+                $path = $file->store('bookings/riders', 'public');
+                $this->riders()->create(['path' => $path]);
             }
         }
     }

@@ -94,6 +94,13 @@
                         <label for="technical_sound_contact" class="form-label">Nom(s) technique son</label>
                         <textarea class="form-control" id="technical_sound_contact" rows="5" name="technical_sound_contact">{{ $booking->technical_sound_contact }}</textarea>
                     </div>
+
+                    <div class="col-12">
+                        <div>
+                            <label for="riders" class="form-label">Ajouter un ou plusieurs documents</label>
+                            <input class="form-control" type="file" id="riders" name="riders[]" multiple>
+                        </div>
+                    </div>
                 </div>
             </section>
 

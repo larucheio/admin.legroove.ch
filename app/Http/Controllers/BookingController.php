@@ -50,6 +50,7 @@ class BookingController extends Controller
         $booking = $user->bookings()->create($request->all());
         $booking->validateBooking();
         $booking->storeMedias($request);
+        $booking->storeRiders($request);
 
         return redirect()->route('bookings.show', $booking);
     }
@@ -90,6 +91,7 @@ class BookingController extends Controller
     {
         $booking->update($request->all());
         $booking->storeMedias($request);
+        $booking->storeRiders($request);
 
         return redirect()->route('bookings.show', $booking);
     }

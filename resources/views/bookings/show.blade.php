@@ -93,6 +93,22 @@
                     {{ $booking->technical_sound_contact }}
                 </p>
             @endif
+            <p>
+                <b>Document(s)</b>
+                <br>
+                @foreach ($booking->riders as $key => $bookingRider)
+                    <div class="mb-3">
+                        <a href="{{ Storage::url($bookingRider->path) }}" target="_blank" rel="noreferrer">Document{{ $key + 1 }}</a>
+                        @can ('delete', $bookingRider)
+                            <form action="{{ route('bookings.riders.destroy', [$booking, $bookingRider]) }}" method="post" class="d-inline-block ms-3">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger">Supprimer</button>
+                            </form>
+                        @endcan
+                    </div>
+                @endforeach
+            </p>
         </section>
 
         <section class="mt-5">
