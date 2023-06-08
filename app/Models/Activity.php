@@ -65,7 +65,7 @@ class Activity extends Model
 
         if (!Auth::user()->isAdmin) {
             // Add blocked dates to disabled dates
-            $bookingBlocking = BookingBlocking::whereIn('type_to_block', ['activity', 'activity,booking'])->where('from', '>=', $min)->get();
+            $bookingBlocking = BookingBlocking::whereIn('type_to_block', ['activity', 'activity,booking'])->get();
             foreach ($bookingBlocking as $blocking) {
                 $dates = CarbonPeriod::since($blocking->from)->until($blocking->to)->toArray();
 
