@@ -55,7 +55,7 @@ class DashboardController extends Controller
             ->map(function($b){
                 return [
                 'start' => $b->from,
-                'end' => $b->to,
+                'end' => $b->to->endOfDay(),
                 'title' => $b->cause,
                 ];
             })
