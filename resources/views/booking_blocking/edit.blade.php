@@ -8,7 +8,7 @@
             @csrf
             @method('PATCH')
 
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <label for="type_to_block" class="form-label">Bloquer *</label>
                 <select class="form-select" id="type_to_block" name="type_to_block" required>
                     <option value="activity,booking" @if ($bookingBlocking->type_to_block === 'activity,booking') selected @endif>Activité & Programmation</option>
@@ -17,12 +17,17 @@
                 </select>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-6">
+                <label for="cause" class="form-label">Raison du blocage</label>
+                <input type="text" class="form-control" id="cause" name="cause" value="{{ $bookingBlocking->cause }}">
+            </div>
+
+            <div class="col-md-6">
                 <label for="from" class="form-label">De *</label>
                 <input type="date" class="form-control" id="from" name="from" value="{{ $bookingBlocking->from->isoFormat('YYYY-MM-DD') }}" required>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <label for="to" class="form-label">À *</label>
                 <input type="date" class="form-control" id="to" name="to" value="{{ $bookingBlocking->to->isoFormat('YYYY-MM-DD') }}" required>
             </div>

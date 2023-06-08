@@ -13,6 +13,7 @@ class BookingBlocking extends Model
      */
     protected $fillable = [
         'type_to_block',
+        'cause',
         'from',
         'to',
     ];

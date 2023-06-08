@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Booking;
+use App\Models\BookingBlocking;
 use App\Models\Activity;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -46,5 +47,20 @@ class DashboardController extends Controller
             ->get();
 
         return response()->json($activities);
+    }
+
+    public function blocked(Request $request)
+    {
+        $blocked = BookingBlocking::get()
+            ->map(function($b){
+                return [
+                'start' => $b->from,
+                'end' => $b->to,
+                'title' => $b->cause,
+                ];
+            })
+            ->toArray();
+
+        return response()->json($blocked);
     }
 }

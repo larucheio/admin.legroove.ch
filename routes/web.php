@@ -30,6 +30,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/fullcalendar/json/bookingsUnvalidated', [DashboardController::class, 'bookingsUnvalidated']);
     Route::get('/fullcalendar/json/activities', [DashboardController::class, 'activities']);
     Route::get('/fullcalendar/json/activitiesUnvalidated', [DashboardController::class, 'activitiesUnvalidated']);
+    Route::get('/fullcalendar/json/blocked', [DashboardController::class, 'blocked']);
 
     Route::resource('booking_blocking', BookingBlockingController::class)->except(['show']);
 

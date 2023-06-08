@@ -45,6 +45,13 @@
                         Activité - En attente de vaildation
                     </label>
                 </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" checked id="calendarBlocked">
+                    <label class="form-check-label" for="calendarBlocked">
+                        Blocages
+                    </label>
+                </div>
             </div>
 
             <div class="col-lg-10">

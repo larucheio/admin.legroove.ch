@@ -27,6 +27,11 @@ let sources = [
     url: '/fullcalendar/json/activitiesUnvalidated',
     color: 'orange'
   },
+  {
+    id: 5,
+    url: '/fullcalendar/json/blocked',
+    color: 'black'
+  },
 ]
 
 function updateEventSource (event, sourceId) {
@@ -62,6 +67,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   const calendarBookingsUnvalidated = document.getElementById('calendarBookingsUnvalidated')
   const calendarActivities = document.getElementById('calendarActivities')
   const calendarActivitiesUnvalidated = document.getElementById('calendarActivitiesUnvalidated')
+  const calendarBlocked = document.getElementById('calendarBlocked')
 
   if (calendarBookings) {
     calendarBookings.addEventListener('change', (event) => updateEventSource(event, 1))
@@ -77,5 +83,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
   if (calendarActivitiesUnvalidated) {
     calendarActivitiesUnvalidated.addEventListener('change', (event) => updateEventSource(event, 4))
+  }
+
+  if (calendarBlocked) {
+    calendarBlocked.addEventListener('change', (event) => updateEventSource(event, 5))
   }
 })

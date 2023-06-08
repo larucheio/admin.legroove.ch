@@ -13,6 +13,7 @@
                 <thead>
                     <tr>
                         <th>Type de réservation bloquée</th>
+                        <th>Raison</th>
                         <th>De</th>
                         <th>À</th>
                         <th></th>
@@ -22,6 +23,7 @@
                     @foreach ($bookingBlockings as $blocking)
                         <tr>
                             <td>{{ $blocking->typeToBlockDisplay }}</td>
+                            <td>{{ $blocking->cause }}</td>
                             <td>{{ $blocking->from->isoFormat('LL') }}</td>
                             <td>{{ $blocking->to->isoFormat('LL') }}</td>
                             <td>
